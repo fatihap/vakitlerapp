@@ -1,15 +1,16 @@
-import 'package:intl/intl.dart';
+
 
 String formatNumber(int number, String locale) {
-  final numberFormat = NumberFormat.decimalPattern(locale);
-  String formattedNumber = numberFormat.format(number);
+  // Tek haneli sayıları iki basamaklı hale getiriyoruz
+  String paddedNumber = number.toString().padLeft(2, '0');
 
   if (locale == 'fa') {
-    return convertToPersianNumerals(formattedNumber);
+    return convertToPersianNumerals(paddedNumber);
   } else if (locale == 'ar') {
-    return convertToArabicNumerals(formattedNumber);
+    return convertToArabicNumerals(paddedNumber);
   } else {
-    return formattedNumber;
+    // Diğer dillerde iki basamaklı sayılar olarak göstereceğiz
+    return paddedNumber;
   }
 }
 
@@ -49,4 +50,15 @@ String convertToArabicNumerals(String number) {
       .split('')
       .map((char) => latinToArabicMap[char] ?? char)
       .join('');
+}
+
+String formatTextWithLocale(String text, String locale) {
+  if (locale == 'ar' || locale == 'fa') {
+    return text.replaceAllMapped(
+        RegExp(r'[0-9]'),
+        (match) => locale == 'fa'
+            ? convertToPersianNumerals(match.group(0)!)
+            : convertToArabicNumerals(match.group(0)!));
+  }
+  return text;
 }

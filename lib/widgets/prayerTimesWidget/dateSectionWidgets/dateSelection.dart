@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 class DateSelectionWidget extends StatelessWidget {
   final VoidCallback goToToday;
   final VoidCallback selectDate;
@@ -21,7 +21,11 @@ class DateSelectionWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         IconButton(
-          icon: const Icon(Icons.arrow_back , color: Colors.blue,),
+          icon: const Icon(
+            Icons.arrow_circle_left_outlined,
+            color: Color.fromARGB(255, 4, 60, 106),
+            size: 50,
+          ),
           onPressed: () {
             onDateChanged(selectedDate.subtract(const Duration(days: 1)));
           },
@@ -33,14 +37,11 @@ class DateSelectionWidget extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                 horizontal: screenWidth * 0.05,
               ),
-              backgroundColor: const Color.fromARGB(255, 230, 240, 243),
+              backgroundColor: const Color.fromARGB(170, 255, 255, 255),
             ),
-            child: const Text(
-              'Bugün',
-              style: TextStyle(
-                fontSize: 18,
-                color:  Color.fromARGB(248, 6, 27, 129)
-              ),
+            child:  Text(
+              'bugun'.tr,
+              style: const TextStyle(fontSize: 20, color: Color.fromARGB(255, 4, 60, 106),),
             ),
           ),
         ),
@@ -53,16 +54,20 @@ class DateSelectionWidget extends StatelessWidget {
                 horizontal: screenWidth * 0.05,
                 vertical: 10,
               ),
-              backgroundColor: const Color.fromARGB(255, 230, 240, 243),
+              backgroundColor:const  Color.fromARGB(170, 255, 255, 255),
             ),
-            child: const Text(
-              'Tarih Seç',
-              style: TextStyle(fontSize: 18 , color:  Color.fromARGB(248, 6, 27, 129)),
+            child:  Text(
+              'tarih_sec'.tr,
+              style:const TextStyle(fontSize: 18, color:  Color.fromARGB(255, 4, 60, 106)),
             ),
           ),
         ),
         IconButton(
-          icon: const Icon(Icons.arrow_forward , color: Colors.blue,),
+          icon: const Icon(
+            Icons.arrow_circle_right_outlined,
+            color: Color.fromARGB(255, 4, 60, 106),
+            size: 50,
+          ),
           onPressed: () {
             onDateChanged(selectedDate.add(const Duration(days: 1)));
           },

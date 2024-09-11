@@ -7,7 +7,8 @@ class CalendarNavigationWidget extends StatelessWidget {
   final String hicriAy;
   final String hicriYil;
 
-  const CalendarNavigationWidget({super.key, 
+  const CalendarNavigationWidget({
+    super.key,
     required this.selectedDate,
     required this.onDateChanged,
     required this.hicriGun,
@@ -20,14 +21,13 @@ class CalendarNavigationWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-           IconButton(
+        IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             onDateChanged(selectedDate.subtract(const Duration(days: 1)));
           },
         ),
-     
-           IconButton(
+        IconButton(
           icon: const Icon(Icons.arrow_forward),
           onPressed: () {
             onDateChanged(selectedDate.add(const Duration(days: 1)));

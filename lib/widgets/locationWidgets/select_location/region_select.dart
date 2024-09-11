@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:xml/xml.dart' as xml;
@@ -26,7 +27,7 @@ class _RegionSelectionPageState extends State<RegionSelectionPage> {
   List<Map<String, dynamic>> _regionList = [];
   List<Map<String, dynamic>> _filteredRegionList = [];
   final TextEditingController _searchController = TextEditingController();
-  List<Map<String, dynamic>> _savedLocations = [];
+ // List<Map<String, dynamic>> _savedLocations = [];
 
   @override
   void initState() {
@@ -153,7 +154,7 @@ Future<void> saveLocation(Map<String, dynamic> location) async {
           },
         ),
         title: Text(
-          '${widget.selectedCityName} - Bölge Seç',
+          '${widget.selectedCityName} - select_region'.tr,
           style: TextStyles.labelStyle,
         ),
       ),
@@ -165,19 +166,19 @@ Future<void> saveLocation(Map<String, dynamic> location) async {
               controller: _searchController,
               onChanged: _filterRegions,
               style: const TextStyle(color: Colors.white),
-              decoration: const InputDecoration(
-                labelText: 'Bölge Ara',
-                labelStyle: TextStyle(color: Colors.white, fontSize: 18),
-                prefixIcon: Icon(Icons.search, color: Colors.white),
+              decoration:  InputDecoration(
+                labelText: 'search_region'.tr,
+                labelStyle:const TextStyle(color: Colors.white, fontSize: 18),
+                prefixIcon:const Icon(Icons.search, color: Colors.white),
                 filled: true,
                 fillColor: Colors.black54,
-                border: UnderlineInputBorder(
+                border:const UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.white),
                 ),
-                enabledBorder: UnderlineInputBorder(
+                enabledBorder:const UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.white),
                 ),
-                focusedBorder: UnderlineInputBorder(
+                focusedBorder:const UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.white),
                 ),
               ),

@@ -3,38 +3,55 @@ import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Constants {
-  static String languageCode = 'tr';
+ static String languageCode = 'tr';  // Varsayılan dil
+  static late String locale;
 
+  // Uygulama başlatıldığında dil kodunu günceller
   static Future<void> initialize() async {
     languageCode = await _getLanguageCode();
+    locale = Get.locale?.languageCode ?? languageCode;  // GetX'den dil kodunu al
   }
 
+  // SharedPreferences'tan dil kodunu alır, yoksa varsayılan 'tr'
   static Future<String> _getLanguageCode() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString('selectedLanguage') ?? 'tr';
   }
 
+  // Dil kodunu URL'lere ekle
+  static String _appendLanguageToUrl(String url) {
+    return '$url&dil=$languageCode';
+  }
+
+  // Namaz vakitleri URL'si
   static String get prayerTimesUrl =>
-      'https://www.turktakvim.com/XMLservis.php?tip=vakit&cityID&dil=$languageCode';
+      _appendLanguageToUrl('https://www.turktakvim.com/XMLservis.php?tip=vakit&cityID');
 
-  static const String takvimUrl =
-      'https://www.turktakvim.com/XMLservis.v2.php?tip=takvim&tarih';
+  // Takvim URL'si
+  static String get takvimUrl =>
+      _appendLanguageToUrl('https://www.turktakvim.com/XMLservis.v2.php?tip=takvim&tarih');
 
-  static const String sehirAramaUrl =
-      'https://www.turktakvim.com/XMLservis.php?tip=arama&SearchName=';
+  // Şehir arama URL'si
+  static String get sehirAramaUrl =>
+      _appendLanguageToUrl('https://www.turktakvim.com/XMLservis.php?tip=arama&SearchName=');
 
-  static const String ulkeSecimUrl =
-      'http://www.turktakvim.com/XMLservis.php?tip=ulke';
-  static const String selectCityUrl =
-      'https://www.turktakvim.com/XMLservis.php?tip=eyalet&countryID';
+  // Ülke seçimi URL'si
+  static String get ulkeSecimUrl =>
+      _appendLanguageToUrl('http://www.turktakvim.com/XMLservis.php?tip=ulke');
 
-  static const String regionSelectUrl =
-      'https://www.turktakvim.com/XMLservis.php?tip=sehir&countryID=200&cityStateFilter=';
+  // Şehir seçimi URL'si
+  static String get selectCityUrl =>
+      _appendLanguageToUrl('https://www.turktakvim.com/XMLservis.php?tip=eyalet&countryID');
+
+  // Bölge seçimi URL'si
+  static String get regionSelectUrl =>
+      _appendLanguageToUrl('https://www.turktakvim.com/XMLservis.php?tip=sehir&countryID=200&cityStateFilter=');
 
   static Future<String> get localPath async {
     final directory = await getApplicationDocumentsDirectory();
     return directory.path;
   }
+
 
   static getDescription(String prayerTimeName) {
     switch (prayerTimeName) {
@@ -50,7 +67,7 @@ class Constants {
         return 'dahve_def'.tr;
       case 'kerahet':
         return 'kerahet_def'.tr;
-      case 'ogle':  
+      case 'ogle':
         return 'ogle_def'.tr;
       case 'ikindi':
         return 'ikindi_def'.tr;

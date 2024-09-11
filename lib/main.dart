@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
+
+import 'classes/constants.dart';
 import 'fragments/homepage.dart';
 import 'langauge_package.dart';
 import 'styles/app_theme.dart';
 
 Future<void> main() async {
+  
   WidgetsFlutterBinding.ensureInitialized();
   
   initializeDateFormatting('tr_TR', null);
+  await Constants.initialize();  
 
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool isFirstTouch = prefs.getBool('isFirstTouch') ?? true;

@@ -10,14 +10,15 @@ import '../widgets/calendarWidgets/share_options_widget.dart';
 import '../widgets/prayerTimesWidget/dateSectionWidgets/dateSelection.dart';
 
 class TakvimPage extends StatefulWidget {
-  const TakvimPage({super.key,});
+  const TakvimPage({
+    super.key,
+  });
 
   @override
   TakvimPageState createState() => TakvimPageState();
 }
 
 class TakvimPageState extends State<TakvimPage> {
-
   String isimYemek = '';
   String yazilarBaslik = '';
   String yazilarMetin = '';
@@ -43,7 +44,6 @@ class TakvimPageState extends State<TakvimPage> {
         yazilarBaslik = takvimData['yazilarBaslik'] ?? '';
         yazilarMetin = takvimData['yazilarMetin'] ?? '';
       });
-      // ignore: empty_catches
     } catch (e) {}
   }
 
@@ -93,68 +93,66 @@ class TakvimPageState extends State<TakvimPage> {
     Share.share(content);
   }
 
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-    body: Stack(
-      children: [
-        // Background GIF
-        Positioned.fill(
-          child: Image.asset(
-            'assets/images/loop_world.gif',
-            fit: BoxFit.cover,
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 169, 185, 198),
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child:
+                Image.asset('assets/images/loop_world.gif', fit: BoxFit.fill),
           ),
-        ),
-        // Your page content
-        SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              DateNavigationRow(
-                selectedDate: selectedDate,
-                onDecrease: decreaseDate,
-                onIncrease: increaseDate,
-              ),
-              const SizedBox(height: 12),
-              DateSelectionWidget(
-                goToToday: () {
-                  setState(() {
-                    selectedDate = DateTime.now();
-                    fetchTakvim(selectedDate);
-                  });
-                },
-                selectDate: () async {
-                  await selectDate(context);
-                },
-                selectedDate: selectedDate,
-                onDateChanged: (DateTime newDate) {
-                  setState(() {
-                    selectedDate = newDate;
-                    fetchTakvim(selectedDate);
-                  });
-                },
-              ),
-              const SizedBox(height: 12),
-              ResizableArticleCard(
-                fontSize: fontSize,
-                minFontSize: minFontSize,
-                maxFontSize: maxFontSize,
-                yazilarBaslik: yazilarBaslik,
-                yazilarMetin: yazilarMetin,
-              ),
-              const SizedBox(height: 12),
-              ShareableCard(
-                title: 'İsim Yemek',
-                value: isimYemek,
-                onLongPress: () => shareContent('İsim Yemek: $isimYemek'),
-              ),
-            ],
+          SingleChildScrollView(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                DateNavigationRow(
+                  selectedDate: selectedDate,
+                  onDecrease: decreaseDate,
+                  onIncrease: increaseDate,
+                ),
+                const SizedBox(height: 12),
+                DateSelectionWidget(
+                  goToToday: () {
+                    setState(() {
+                      selectedDate = DateTime.now();
+                      fetchTakvim(selectedDate);
+                    });
+                  },
+                  selectDate: () async {
+                    await selectDate(context);
+                  },
+                  selectedDate: selectedDate,
+                  onDateChanged: (DateTime newDate) {
+                    setState(() {
+                      selectedDate = newDate;
+                      fetchTakvim(selectedDate);
+                    });
+                  },
+                ),
+                const SizedBox(height: 12),
+                ResizableArticleCard(
+                  fontSize: fontSize,
+                  minFontSize: minFontSize,
+                  maxFontSize: maxFontSize,
+                  yazilarBaslik: yazilarBaslik,
+                  yazilarMetin: yazilarMetin,
+                ),
+                const SizedBox(height: 12),
+                if (isimYemek != "")
+                  ShareableCard(
+                    title: 'İsim Yemek',
+                    value: isimYemek,
+                    onLongPress: () => shareContent('İsim Yemek: $isimYemek'),
+                  ),
+              ],
+            ),
           ),
-        ),
-      ],
-    ),
-  );
-}
+        ],
+      ),
+    );
+  }
 
   void decreaseDate() {
     setState(() {

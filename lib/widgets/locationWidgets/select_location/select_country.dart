@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../classes/constants.dart';
 import '../../../styles/textStyle.dart';
 
 class CountrySelectionPage extends StatefulWidget {
@@ -20,11 +22,14 @@ class CountrySelectionPage extends StatefulWidget {
 
 class _CountrySelectionPageState extends State<CountrySelectionPage> {
   List<Map<String, dynamic>> _filteredCountryList = [];
+  late String languageCode;
 
   @override
   void initState() {
     super.initState();
     _filteredCountryList = widget.countryList;
+        languageCode = Constants.languageCode; 
+
   }
 
   void _filterCountryList(String query) {
@@ -51,9 +56,9 @@ class _CountrySelectionPageState extends State<CountrySelectionPage> {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
-          'Ülke Seç',
-          style: TextStyles.labelStyle,
+        title:  Text(
+          'select_country'.tr,
+          style:  TextStyles.labelStyle,
         ),
         backgroundColor: Colors.black,
       ),
@@ -63,21 +68,21 @@ class _CountrySelectionPageState extends State<CountrySelectionPage> {
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               onChanged: _filterCountryList,
-              style: const TextStyle(color: Colors.white), // Set text color to white
-              decoration: const InputDecoration(
-                labelText: 'Ülke Ara',
-                labelStyle: TextStyle(color: Colors.white, fontSize: 18),
-                prefixIcon: Icon(Icons.search, color: Colors.white),
+              style: const TextStyle(color: Colors.white),
+              decoration:  InputDecoration(
+                labelText: 'search_country'.tr,
+                labelStyle:const TextStyle(color: Colors.white, fontSize: 18),
+                prefixIcon: const Icon(Icons.search, color: Colors.white),
                 filled: true,
-                fillColor: Colors.black54, // Optional: Fill color for the text field background
-                border: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white), // White divider
+                fillColor: Colors.black54,
+                border:const UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white), 
                 ),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white), // White divider
+                enabledBorder:const UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white), 
                 ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white), // White divider
+                focusedBorder:const UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white), 
                 ),
               ),
             ),

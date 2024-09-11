@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use, empty_catches, use_build_context_synchronously
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -63,7 +61,8 @@ class PrayerService {
             prayerTimesElement.getElement('isaisani')?.text ?? '');
         final dahve = Functions.cleanText(
             prayerTimesElement.getElement('dahve')?.text ?? '');
-
+ final isfirar = Functions.cleanText(
+            prayerTimesElement.getElement('isfirar')?.text ?? '');
         final seher = Functions.cleanText(
             prayerTimesElement.getElement('seher')?.text ?? '');
         final teheccud = Functions.cleanText(
@@ -88,7 +87,7 @@ class PrayerService {
             yatsi: yatsi,
             asrisani: asrisani,
             isaisani: isaisani,
-            isfirar: israk,
+            isfirar: isfirar,
             istibak: istibak,
             seher: seher,
             teheccud: teheccud,

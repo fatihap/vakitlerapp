@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
-import 'package:namazvakitleri/widgets/locationWidgets/location_selection_page.dart';
-import 'package:namazvakitleri/widgets/locationWidgets/select_location/select_city.dart';
-import 'package:namazvakitleri/widgets/locationWidgets/select_location/select_country.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:xml/xml.dart' as xml;
-
+import 'package:get/get.dart';
 import '../classes/constants.dart';
+import '../widgets/locationWidgets/location_selection_page.dart';
+import '../widgets/locationWidgets/select_location/select_city.dart';
+import '../widgets/locationWidgets/select_location/select_country.dart';
 import 'homepage.dart';
 
 class LocationWidget extends StatefulWidget {
@@ -215,107 +215,104 @@ class _LocationWidgetState extends State<LocationWidget> {
     await prefs.setStringList('savedLocations', savedLocationsJson);
   }
 
-
-void showLoadingDialog(BuildContext context) {
-  showDialog(
-    context: context,
-    barrierDismissible: false,
-    builder: (context) => Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: Container(
-        padding:const  EdgeInsets.all(20.0),
-        height: 120.0, // Adjust the height as needed
-        child: const Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircularProgressIndicator(),
-            SizedBox(height: 16.0),
-            Text(
-              'Konum Alınıyor...',
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
+  void showLoadingDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
         ),
-      ),
-    ),
-  );
-}
-Future<void> _getLocation() async {
-  bool serviceEnabled;
-  LocationPermission permission;
-
-  serviceEnabled = await Geolocator.isLocationServiceEnabled();
-  if (!serviceEnabled) {
-    return;
-  }
-
-  permission = await Geolocator.checkPermission();
-  if (permission == LocationPermission.denied) {
-    permission = await Geolocator.requestPermission();
-    if (permission == LocationPermission.denied) {
-      return;
-    }
-  }
-
-  if (permission == LocationPermission.deniedForever) {
-    return;
-  }
-
-  try {
-    showLoadingDialog(context);
-
-    final position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-    );
-    final response = await http.get(Uri.parse(
-      'http://www.turktakvim.com/XMLservis.php?tip=konum&latitude=${position.latitude}&longitude=${position.longitude}&limit=10&radius=45&format=xml',
-    ));
-
-    if (response.statusCode == 200) {
-      final document = xml.XmlDocument.parse(response.body);
-      final cityElements = document.findAllElements('sehir').toList();
-
-      Navigator.of(context).pop();
-
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => LocationSelectionPage(
-            cityElements: cityElements,
-            
-            onCitySelected: (cityID, cityName) {
-              _onCitySelected(cityID, cityName);
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => MainPage(
-                    selectedCityId: cityID,
-                    selectedCityName: cityName,
-                  ),
+        child: Container(
+          padding: const EdgeInsets.all(20.0),
+          height: 120.0, // Adjust the height as needed
+          child:  Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+          const    CircularProgressIndicator(),
+            const  SizedBox(height: 16.0),
+              Text(
+                'location_searching'.tr,
+                style: const TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
                 ),
-              );
-            },
+              ),
+            ],
           ),
         ),
-      );
-   
-    } else {
-      Navigator.of(context).pop(); // Close the loading dialog
-      // Handle the case when the response is not successful
-    }
-  } catch (e) {
-    Navigator.of(context).pop(); // Close the loading dialog
-    // Handle the exception
-    print('Error fetching location: $e');
+      ),
+    );
   }
-}
 
+  Future<void> _getLocation() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return;
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return;
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return;
+    }
+
+    try {
+      showLoadingDialog(context);
+
+      final position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
+      final response = await http.get(Uri.parse(
+        'http://www.turktakvim.com/XMLservis.php?tip=konum&latitude=${position.latitude}&longitude=${position.longitude}&limit=10&radius=45&format=xml',
+      ));
+
+      if (response.statusCode == 200) {
+        final document = xml.XmlDocument.parse(response.body);
+        final cityElements = document.findAllElements('sehir').toList();
+
+        Navigator.of(context).pop();
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => LocationSelectionPage(
+              cityElements: cityElements,
+              onCitySelected: (cityID, cityName) {
+                _onCitySelected(cityID, cityName);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MainPage(
+                      selectedCityId: cityID,
+                      selectedCityName: cityName,
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        );
+      } else {
+        Navigator.of(context).pop(); // Close the loading dialog
+        // Handle the case when the response is not successful
+      }
+    } catch (e) {
+      Navigator.of(context).pop(); // Close the loading dialog
+      // Handle the exception
+      print('Error fetching location: $e');
+    }
+  }
 
   void _confirmSelection() {
     if (_selectedCity != null &&
@@ -337,8 +334,8 @@ Future<void> _getLocation() async {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-         leading: IconButton(
-          icon:const Icon(
+        leading: IconButton(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.white,
           ),
@@ -346,11 +343,10 @@ Future<void> _getLocation() async {
             Navigator.pop(context);
           },
         ),
-      
         backgroundColor: Colors.black,
-        title: const Text(
-          'Konum Seçimi',
-          style: TextStyle(color: Colors.white, fontSize: 22),
+        title:  Text(
+          'location_selection'.tr,
+          style:const TextStyle(color: Colors.white, fontSize: 22),
         ),
         actions: [
           IconButton(
@@ -362,40 +358,41 @@ Future<void> _getLocation() async {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/world_location.jpg',),
+            image: AssetImage(
+              'assets/images/world_location.jpg',
+            ),
             fit: BoxFit.cover,
           ),
         ),
         child: Column(
           children: [
-         Padding(
-  padding: const EdgeInsets.all(16.0),
-  child: TextField(
-    controller: _searchController,
-    style: const TextStyle(color: Colors.white),
-    onChanged: _onSearchTextChanged,
-    decoration:const  InputDecoration(
-      labelText: 'Şehir Ara',
-      labelStyle:  TextStyle(color: Colors.white, fontSize: 20),
-      prefixIcon:  Icon(
-        Icons.search,
-        color: Colors.white,
-      ),
-      filled: true,
-      fillColor: Colors.black54,
-      border:  UnderlineInputBorder(
-        borderSide: BorderSide(color: Colors.white), 
-      ),
-      enabledBorder:  UnderlineInputBorder(
-        borderSide: BorderSide(color: Colors.white), 
-      ),
-      focusedBorder:  UnderlineInputBorder(
-        borderSide: BorderSide(color: Colors.white), 
-      ),
-    ),
-  ),
-),
-
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                controller: _searchController,
+                style: const TextStyle(color: Colors.white),
+                onChanged: _onSearchTextChanged,
+                decoration:  InputDecoration(
+                  labelText: 'search_city'.tr,
+                  labelStyle:const TextStyle(color: Colors.white, fontSize: 20),
+                  prefixIcon:const  Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ),
+                  filled: true,
+                  fillColor: Colors.black54,
+                  border:const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  enabledBorder:const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder:const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
             Expanded(
               child: _isLoading
                   ? const Center(child: CircularProgressIndicator())
@@ -407,7 +404,7 @@ Future<void> _getLocation() async {
                             _selectedCity!['ID'] == location['ID'];
                         return Container(
                           color: isSelected
-                              ?const  Color.fromARGB(255, 215, 226, 135)
+                              ? const Color.fromARGB(137, 66, 109, 190)
                               : Colors.transparent,
                           child: ListTile(
                             title: Text(
@@ -425,15 +422,15 @@ Future<void> _getLocation() async {
                       },
                     ),
             ),
-             const Divider(
-              color: Colors.white, // Divider rengini beyaz olarak ayarladık
+            const Divider(
+              color: Colors.white, 
               thickness: 2,
               indent: 16.0,
               endIndent: 16.0,
             ),
-            const Text(
-              'Kayıtlı Şehirler',
-              style: TextStyle(
+             Text(
+              'kayitli_sehirler'.tr,
+              style:const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
                   color: Colors.white),
@@ -449,7 +446,7 @@ Future<void> _getLocation() async {
 
                   return Container(
                     color: isSelected
-                        ? Color.fromARGB(255, 3, 3, 1)
+                        ? const Color.fromARGB(255, 3, 3, 1)
                         : Colors.transparent,
                     child: ListTile(
                       title: Text(
@@ -483,9 +480,9 @@ Future<void> _getLocation() async {
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton(
                 onPressed: _confirmSelection,
-                child: const Text(
-                  'Konumu Onayla',
-                  style: TextStyle(fontSize: 20),
+                child:  Text(
+                  'konum_onay'.tr,
+                  style:const TextStyle(fontSize: 20),
                 ),
               ),
             ),
@@ -498,5 +495,4 @@ Future<void> _getLocation() async {
       ),
     );
   }
-
 }

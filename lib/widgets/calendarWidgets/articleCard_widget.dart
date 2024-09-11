@@ -61,7 +61,8 @@ class _ResizableArticleCardState extends State<ResizableArticleCard> {
                   },
                 ),
                 IconButton(
-                  icon: const Icon(Icons.zoom_out, color: AppColors.textPrimary),
+                  icon:
+                      const Icon(Icons.zoom_out, color: AppColors.textPrimary),
                   onPressed: () {
                     setState(() {
                       if (fontSize > widget.minFontSize) {
@@ -77,7 +78,7 @@ class _ResizableArticleCardState extends State<ResizableArticleCard> {
               data: widget.yazilarBaslik,
               style: {
                 'body': Style(
-                  fontSize: FontSize(24), // Fixed font size of 28
+                  fontSize: FontSize(24),
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
@@ -90,9 +91,10 @@ class _ResizableArticleCardState extends State<ResizableArticleCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Html(
-                    data: widget.yazilarMetin,
+                    data: Functions.cleanHtmlLinks(widget.yazilarMetin),
                     style: {
-                      'body': Style(fontSize: FontSize(fontSize) , color: (Colors.black)),
+                      'body': Style(
+                          fontSize: FontSize(fontSize), color: (Colors.black)),
                     },
                   ),
                   const SizedBox(height: 12),

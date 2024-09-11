@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:namazvakitleri/fragments/homepage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:xml/xml.dart' as xml;
+import 'package:get/get.dart';
 
 class LocationSelectionPage extends StatefulWidget {
   final List<xml.XmlElement> cityElements;
@@ -28,7 +29,8 @@ class _LocationSelectionPageState extends State<LocationSelectionPage> {
 
   Future<void> saveLocation(Map<String, dynamic> location) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (!_savedLocations.any((savedLocation) => savedLocation['ID'] == location['ID'])) {
+    if (!_savedLocations
+        .any((savedLocation) => savedLocation['ID'] == location['ID'])) {
       setState(() {
         _savedLocations.add(location.cast<String, String>());
       });
@@ -76,9 +78,9 @@ class _LocationSelectionPageState extends State<LocationSelectionPage> {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
-          'Canlı Konum Seçimi',
-          style: TextStyle(color: Colors.white),
+        title: Text(
+          'auto_location'.tr,
+          style: const TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.black,
       ),
@@ -87,7 +89,6 @@ class _LocationSelectionPageState extends State<LocationSelectionPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-           
             const SizedBox(height: 16.0),
             Expanded(
               child: ListView.builder(
@@ -102,16 +103,16 @@ class _LocationSelectionPageState extends State<LocationSelectionPage> {
                   }
 
                   return Card(
-                    color: Colors.black45, 
+                    color: Colors.black45,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    elevation: 6, 
+                    elevation: 6,
                     margin: const EdgeInsets.symmetric(vertical: 8.0),
                     child: ListTile(
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 12.0),
                       title: Text(
-                        
                         cityNameTR,
                         style: const TextStyle(
                           fontSize: 25.0,

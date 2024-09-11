@@ -65,7 +65,7 @@ class _ReusableCardWidgetState extends State<ReusableCardWidget> {
           takvimData = snapshot.data!;
           final locale = Get.locale?.toString() ?? 'tr_TR';
           return Card(
-            color: const Color.fromARGB(255, 230, 240, 243),
+            color: const Color.fromARGB(170, 255, 255, 255),
             elevation: 5,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
@@ -99,7 +99,6 @@ class _ReusableCardWidgetState extends State<ReusableCardWidget> {
     const double titleWidth = 120.0;
     final title = key.tr;
 
-    // Format the number in value based on the locale
     final formattedValue = value.split(' ').map((part) {
       final intValue = int.tryParse(part);
       return intValue != null ? formatNumber(intValue, locale) : part;
@@ -114,7 +113,8 @@ class _ReusableCardWidgetState extends State<ReusableCardWidget> {
             title,
             style: DateColumnWidgetStyles.subtitleStyle.copyWith(
               fontSize: 20,
-              color: const Color(0xFFB293153),
+              color: Colors.black,
+              fontWeight: FontWeight.w900
             ),
           ),
         ),
@@ -127,7 +127,7 @@ class _ReusableCardWidgetState extends State<ReusableCardWidget> {
                 ':',
                 style: DateColumnWidgetStyles.subtitleStyle.copyWith(
                   fontSize: 20,
-                  color: const Color(0xffb293153),
+                  color: Colors.black,
                 ),
               ),
             ),
@@ -139,8 +139,9 @@ class _ReusableCardWidgetState extends State<ReusableCardWidget> {
               formattedValue,
               textAlign: TextAlign.left,
               style: DateColumnWidgetStyles.subtitleStyle.copyWith(
-                fontSize: 18,
-                color: const Color.fromARGB(248, 6, 27, 129),
+                 fontSize: 20,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500
               ),
             ),
           ),

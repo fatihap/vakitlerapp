@@ -1,7 +1,8 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers, deprecated_member_use
 
+import 'package:flutter/foundation.dart' show defaultTargetPlatform, TargetPlatform;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../fragments/langauge_selection.dart';
@@ -23,15 +24,20 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Function to launch URLs
-    Future<void> _launchURL(String url) async {
+    void shareApp() {
+      final String url = defaultTargetPlatform == TargetPlatform.android
+          ? 'https://play.google.com/store/apps/details?id=turkiyetakvimi.takvim'
+          : 'https://apps.apple.com/us/app/world-prayer-times-pro/id6467521475?platform=iphone';
+
+      Share.share('Check out this app: $url');
+    }
+   Future<void> launchURL(String url) async {
       if (await canLaunch(url)) {
         await launch(url);
       } else {
         throw 'Could not launch $url';
       }
     }
-
     return Drawer(
       child: Column(
         children: [
@@ -78,7 +84,7 @@ class CustomDrawer extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  color: Colors.white, // Background color for ListTile
+                  color: Colors.white,
                   child: Column(
                     children: [
                       ListTile(
@@ -142,13 +148,21 @@ class CustomDrawer extends StatelessWidget {
                           );
                         },
                       ),
+                      ListTile(
+                        leading: const Icon(Icons.share),
+                        title: Text('share'.tr),
+                        onTap: () {
+                          shareApp();
+                        },
+                      ),
                     ],
                   ),
                 ),
               ],
             ),
           ),
-       Container(
+        
+          Container(
   color: Colors.white,
   padding: const EdgeInsets.all(16.0),
   child: Column(
@@ -188,7 +202,7 @@ class CustomDrawer extends StatelessWidget {
           Expanded(
             child: GestureDetector(
               onTap: () {
-                _launchURL('mailto:info@turktakvim.com');
+                launchURL('mailto:info@turktakvim.com');
               },
               child: RichText(
                 text: TextSpan(
@@ -224,7 +238,7 @@ class CustomDrawer extends StatelessWidget {
             child: GestureDetector(
               onTap: () {
                 final languageCode = Get.locale?.languageCode ?? 'en';
-                _launchURL(
+                launchURL(
                     'https://www.turktakvim.com/index.php?=dil=$languageCode');
               },
               child: RichText(

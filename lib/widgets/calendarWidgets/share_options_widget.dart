@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 class ShareOptionsBottomSheet extends StatelessWidget {
   final String content;
   final Function(String) onShare;
@@ -17,7 +17,7 @@ class ShareOptionsBottomSheet extends StatelessWidget {
         children: <Widget>[
           ListTile(
             leading: const Icon(Icons.share),
-            title: const Text('Paylaş'),
+            title:  Text('paylas'.tr),
             onTap: () {
               onShare(content);
               Navigator.of(context).pop();

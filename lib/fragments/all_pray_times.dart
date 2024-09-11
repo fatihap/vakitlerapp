@@ -43,7 +43,7 @@ class AllPrayTimesState extends State<AllPrayTimes>
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-      backgroundColor: const Color(0xFFB293153),
+      backgroundColor: Colors.transparent,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -55,12 +55,12 @@ class AllPrayTimesState extends State<AllPrayTimes>
                 onDecrease: () => changeDate(-1),
                 onIncrease: () => changeDate(1),
               ),
-              const SizedBox(height: 12), // Adjusted spacing
+              const SizedBox(height: 12), 
               DateSelectionWidget(
                 goToToday: () {
                   setState(() {
                     selectedDate = DateTime.now();
-                    initializePrayerTimes(); // Updated to initialize prayer times
+                    initializePrayerTimes(); 
                   });
                 },
                 selectDate: () async {
@@ -78,7 +78,7 @@ class AllPrayTimesState extends State<AllPrayTimes>
               _prayerTimes.isNotEmpty
                   ? Column(
                       children: [
-                        PrayerTimeTableWidget(prayerTimes: _prayerTimes, selectedDate: widget.selectedDate,),
+                        PrayerTimeTableWidget(prayerTimes: _prayerTimes,selectedDate: selectedDate,),
                       ],
                     )
                   : isLoading

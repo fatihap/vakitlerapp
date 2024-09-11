@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../classes/format_number.dart';
+
 class DateNavigationRow extends StatelessWidget {
   final DateTime selectedDate;
   final VoidCallback? onDecrease;
@@ -17,7 +19,11 @@ class DateNavigationRow extends StatelessWidget {
     final String month = 'SeneninAylari${[date.month]}'.tr;
     final String dayName = 'HaftaninGunleri${[date.weekday]}'.tr;
 
-    return '${date.day} $month ${date.year} $dayName';
+    final locale = Get.locale?.languageCode ?? 'tr';
+    final formattedDay = formatNumber(date.day, locale);
+    final formattedYear = formatNumber(date.year, locale);
+
+    return '$formattedDay $month $formattedYear $dayName';
   }
 
   @override
@@ -41,4 +47,8 @@ class DateNavigationRow extends StatelessWidget {
       ),
     );
   }
+
+
+
+
 }

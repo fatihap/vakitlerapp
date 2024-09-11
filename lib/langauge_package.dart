@@ -8,19 +8,31 @@ class Dil extends Translations {
   static const fa = Locale("fa", "IR");
   static const bs = Locale("bs", "BA");
   static const varsayilan = tr;
-  static final diller = [tr, en];
+  static final diller = [tr];
 
   @override
   Map<String, Map<String, String>> get keys => {
         'tr_TR': {
+          'share': 'Paylaş',
           'daily_event': 'Günün Olayı',
           'daily_quoute': 'Günün Sözü',
           'prayer_times': 'NAMAZ VAKİTLERİ',
           'HicriKameri': 'Hicri Kameri',
           'language_selection': 'Dil Seçimi',
-          'location_selection' : 'Konum Seçimi',
+          'location_selection': 'Konum Seçimi',
           'vakit': 'Vakit',
           'saat': 'Saat',
+          'bugun': 'Bugün',
+          'tarih_sec': 'Tarih Seç',
+          'search_city': 'Sehir Ara',
+          'kayitli_sehirler': 'Kayıtlı Şehirler',
+          'konum_onay': 'Konumu Onayla',
+          'location_searching': 'Konum Aranıyor...',
+          'auto_location': 'Otomaik Konum Seçimi',
+          'select_country': 'Ülke Seçimi',
+          'search_country': 'Ülke Arama',
+          'select_region': 'Bölge Seçimi',
+          'search_region': 'Bölge Arama',
           'countrylist': 'Ülkeler listesi için tıklayınız',
           'page_onyuz': 'Ön Yüz',
           'page_arka': 'Arka Yaprak',
@@ -50,7 +62,7 @@ class Dil extends Translations {
           'geceyarisi': 'Gece Yarısı Vakti',
           'teheccud': 'Teheccüd',
           'seher': 'Seher',
-          'kıble': 'Kıble',
+          'kible': 'Kıble',
           'RumiAylar[1]': 'Kânûn-i Sânî',
           'RumiAylar[2]': 'Şubat',
           'RumiAylar[3]': 'Mart',
@@ -225,7 +237,7 @@ class Dil extends Translations {
           'remain_ikindi': "İkindi'ye kalan zaman",
           'remain_aksam': "Akşam'a kalan zaman",
           'remain_yatsi': "Yatsı'ya kalan zaman",
-          'KibleSaatiYazisi':
+          'kibleSaatiYazisi':
               "Kıble Sâati Vakti'nde Güneşe dönen, kıbleye dönmüş olur.",
           'YanlisImsak': "Yanlış imsâk vakti açıklaması",
           'Rasad': "Rasad hakkında açıklama",
@@ -269,8 +281,7 @@ class Dil extends Translations {
           'seher_def':
               'Güneşin batışı olan akşam vakti ile imsâk vakti arasındaki zemânın son altıda biridir. (Şir’at-ül-islâm) şerhinde diyor ki, (Hadîs-i şerîfde, (Gece seher vaktinde ve nemâzlardan sonra yapılan düâ kabûl olunur) buyuruldu. Düâya hamd ve senâ ve salevât ile başlamak ve sonunda iki avucu yüze sürmek sünnetdir). Bu vakitlerde istigfâr etmeği, ağlamağı, Allahü teâlâya yalvarmağı ganîmet bilmelidir. (Dürer) de diyor ki: (Seher vaktinde yenilen yemeğe sahûr denir.)',
           'kible_def':
-              'Harîta üzerinde bir şehir ile, Mekke şehri arasında çizilen doğruya (Kıble hattı) denir. Bu hat, kıble istikametini gösterir. Güneş bu hat üzerine gelince, (Kıble sâati vakti) olur. Kıble sâati vakti'
-                  'nde Güneşe dönen, kıbleye dönmüş olur.',
+              'Kıble sâati vaktinde Güneşe dönen, kibleye dönmüş olur.',
           'isfirar_def': 'Güneş batarken nemâz kılması tahrîmen mekrûh, ya'
               'nî harâm olan zemândır. Güneş sarardıkdan sonra, ön (alt) kenârı zâhirî (görünen) ufuk hattına bir mızrak boyu kalınca, ya'
               'nî merkezinin hakîkî ufukdan 5 derece yükseklikde olunca başlayan ve batıncaya kadar olan müddettir. Ya'
@@ -281,18 +292,29 @@ class Dil extends Translations {
               'nî güneşin arka kenârının zâhirî ufuk hattı altına on derece irtifâ’a indikden sonraya bırakmak harâmdır. Hastalık, seferî olmak, hazır ta’âmı (yemeği) yimek için, bu kadar gecikdirilebilir.',
         },
         'en_US': {
+          "share": "Share",
           "daily_event": "Daily Event",
-          "daily_quote": "Daily Quote",
+          "daily_quoute": "Daily Quote",
           "prayer_times": "PRAYER TIMES",
           "HicriKameri": "Hijri Calendar",
           "language_selection": "Language Selection",
+          "location_selection": "Location Selection",
           "vakit": "Time",
           "saat": "Hour",
-          'daily_quoute': 'Daily Quoute',
+          "bugun": "Today",
+          "tarih_sec": "Select Date",
+          "search_city": "Search City",
+          "kayitli_sehirler": "Saved Cities",
+          "konum_onay": "Confirm Location",
+          "location_searching": "Searching Location...",
+          "auto_location": "Automatic Location Selection",
+          "select_country": "Select Country",
+          "search_country": "Search Country",
+          "select_region": "Select Region",
+          "search_region": "Search Region",
 
           'page_onyuz': 'Front Page',
           'page_arka': 'Back of the Page',
-          'location_selection': 'Select Location',
           'page_sonraki': 'Next Day',
           'page_onceki': 'Previous Day',
           'page_bugun': 'Today',
@@ -321,7 +343,7 @@ class Dil extends Translations {
           'geceyarisi': '',
           'teheccud': '',
           'seher': '',
-          'kıble': '',
+          'kible': '',
 
 //Rumi Aylar
           'RumiAylar[1]': 'K. Sânî',
@@ -527,7 +549,7 @@ class Dil extends Translations {
           'remain_aksam': "Time until Maghrib",
           'remain_yatsi': "Time until Isha",
 
-          'KibleSaatiYazisi':
+          'kibleSaatiYazisi':
               "When we face towards the sun at Qibla Time of the day shown in the prayer time tables.",
 
           'popupBaslik': "Important information about Imsâk time !..",
@@ -554,13 +576,26 @@ class Dil extends Translations {
               'Asr is also called asr-i awwal. It is the time when asr-i awwal starts according to the Two Imâms [Imâm Abû Yûsuf and Imâm Muhammad]. It is the same in the other three Madhhabs, too. It is the time when the shadow of everything becomes longer than its shadow at the time of true zawâl by as much as its height.',
         },
         'fa_IR': {
+          "share": "اشتراک‌گذاری",
           "daily_event": "رویداد روز",
-          "daily_quote": "نقل قول روز",
-          "prayer_times": "زمان های نماز",
+          "daily_quoute": "سخن روز",
+          "prayer_times": "اوقات نماز",
           "HicriKameri": "تقویم هجری",
           "language_selection": "انتخاب زبان",
+          "location_selection": "انتخاب مکان",
           "vakit": "زمان",
           "saat": "ساعت",
+          "bugun": "امروز",
+          "tarih_sec": "انتخاب تاریخ",
+          "search_city": "جستجوی شهر",
+          "kayitli_sehirler": "شهرهای ذخیره شده",
+          "konum_onay": "تایید مکان",
+          "location_searching": "در حال جستجوی مکان...",
+          "auto_location": "انتخاب خودکار مکان",
+          "select_country": "انتخاب کشور",
+          "search_country": "جستجوی کشور",
+          "select_region": "انتخاب منطقه",
+          "search_region": "جستجوی منطقه",
 
           'page_onyuz': 'روی صفحه',
           'page_arka': 'پشت صفحه',
@@ -593,7 +628,7 @@ class Dil extends Translations {
           'geceyarisi': 'ضحوه کبری',
           'teheccud': 'نصف شب',
           'seher': 'تهجد',
-          'kıble': 'سحر',
+          'kible': 'سحر',
 
           'RumiAylar[1]': 'کانون ثانی',
           'RumiAylar[2]': 'شوباط',
@@ -799,7 +834,7 @@ class Dil extends Translations {
           'remain_aksam': "مدت مانده به زمان شام",
           'remain_yatsi': "مدت مانده به زمان خفتن",
 
-          'KibleSaatiYazisi':
+          'kibleSaatiYazisi':
               ".در وقت ساعت قبله، کسیکه به آفتاب متوجه شود (به طرف آفتاب رو بیاورد)، به طرف قبله متوجه شده است",
 
           'popupBaslik': "Important information about Imsâk time !..",
@@ -808,13 +843,28 @@ class Dil extends Translations {
           'DogruImsak': "Information about correct Imsâk time",
         },
         'bs_BA': {
-          "daily_event": "Događaj dana",
-          "daily_quote": "Citati dana",
-          "prayer_times": "VREMENA MOLITVE",
-          "HicriKameri": "Hidžretski kalendar",
-          "language_selection": "Izbor jezika",
+          "share": "Podijeli",
+          "daily_event": "Dnevni Događaj",
+          "daily_quoute": "Dnevni Citat",
+          "prayer_times": "VREMENA NAMAZA",
+          "HicriKameri": "Hidžretski Kalendar",
+          "language_selection": "Izbor Jezika",
+          "location_selection": "Izbor Lokacije",
           "vakit": "Vrijeme",
           "saat": "Sat",
+          "bugun": "Danas",
+          "tarih_sec": "Izaberite Datum",
+          "search_city": "Pretraži Grad",
+          "kayitli_sehirler": "Sačuvani Gradovi",
+          "konum_onay": "Potvrdi Lokaciju",
+          "location_searching": "Tražim Lokaciju...",
+          "auto_location": "Automatski Izbor Lokacije",
+          "select_country": "Izaberite Državu",
+          "search_country": "Pretraži Državu",
+          "select_region": "Izaberite Regiju",
+          "search_region": "Pretraži Regiju",
+          "daily_quote": "Citati dana",
+        
 
           'page_onyuz': 'Prednja strana',
           'page_arka': 'Zadnji strana',
@@ -847,8 +897,8 @@ class Dil extends Translations {
           'isaisani': 'Qibla sati',
           'geceyarisi': 'Dahve-i Kübrâ',
           'teheccud': 'Polonoći',
-          'seher': 'Teheccüd',
-          'kıble': 'Seher',
+          'seher': 'teheccüd',
+          'kible': 'Kıble',
 
 //Rumi Aylar
           'RumiAylar[1]': 'Kânûn-i Sânî',
@@ -1000,7 +1050,7 @@ class Dil extends Translations {
           'Hizir': 'Hızır',
           'Kasim': 'Kasım',
           'YesilHat':
-              '<span style="color:green; font-weight:bold;">Zelena</span> linija od grada, je pravac Kible. ',
+              '<span style="color:green; font-weight:bold;">Zelena</span> linija od grada, je pravac kible. ',
 
           'UlkeYazisi': 'Država',
           'EyaletYazisi': 'State',
@@ -1057,7 +1107,7 @@ class Dil extends Translations {
           'remain_aksam': "Vrijeme do akšama",
           'remain_yatsi': "Vrijeme do jacije",
 
-          'KibleSaatiYazisi':
+          'kibleSaatiYazisi':
               "Po satu kible ako se neko bude okretao prema suncu ,to znaci da se on okrece prema kibli",
 
           'popupBaslik': "Important information about Imsâk time !..",
@@ -1066,6 +1116,27 @@ class Dil extends Translations {
           'DogruImsak': "Information about correct Imsâk time",
         },
         'az_AZ': {
+          "share": "Paylaş",
+          "daily_event": "Günün Hadisəsi",
+          "daily_quoute": "Günün Sözləri",
+          "prayer_times": "NAMAZ VAXTLARI",
+          "HicriKameri": "Hicri Təqvim",
+          "language_selection": "Dil Seçimi",
+          "location_selection": "Yer Seçimi",
+          "vakit": "Vaxt",
+          "saat": "Saat",
+          "bugun": "Bugün",
+          "tarih_sec": "Tarixi Seç",
+          "search_city": "Şəhər Axtar",
+          "kayitli_sehirler": "Qeyd Olunmuş Şəhərlər",
+          "konum_onay": "Yeri Təsdiq Et",
+          "location_searching": "Yer Axtarılır...",
+          "auto_location": "Avtomatik Yer Seçimi",
+          "select_country": "Ölkəni Seç",
+          "search_country": "Ölkəni Axtar",
+          "select_region": "Rayonu Seç",
+          "search_region": "Rayonu Axtar",
+
           'page_onyuz': 'Ön Teref',
           'page_arka': 'Arxa Terefdeki',
           'page_sonraki': 'Sonrakı Gün',
@@ -1304,7 +1375,7 @@ class Dil extends Translations {
           'remain_aksam': "Axşama qalan vaxt",
           'remain_yatsi': "İşaya qalan vaxt",
 
-          'KibleSaatiYazisi':
+          'kibleSaatiYazisi':
               "Qiblə Saatı Vaxtında Günəşə dönən,Qibləyə dönmüş sayılır.",
 
           'popupBaslik': "Important information about Imsâk time !..",
@@ -1313,13 +1384,29 @@ class Dil extends Translations {
           'DogruImsak': "Information about correct Imsâk time",
         },
         'ar_SA': {
+          "share": "مشاركة",
           "daily_event": "حدث اليوم",
-          "daily_quote": "اقتباس اليوم",
-          "prayer_times": "أوقات الصلاة",
+          "daily_quoute": "اقتباس اليوم",
+          "prayer_times": "مواقيت الصلاة",
           "HicriKameri": "التقويم الهجري",
           "language_selection": "اختيار اللغة",
+          "location_selection": "اختيار الموقع",
           "vakit": "الوقت",
-          "saat": "ساعة",
+          "saat": "الساعة",
+          "bugun": "اليوم",
+          "tarih_sec": "اختيار التاريخ",
+          "search_city": "بحث عن مدينة",
+          "kayitli_sehirler": "المدن المحفوظة",
+          "konum_onay": "تأكيد الموقع",
+          "location_searching": "جارٍ البحث عن الموقع...",
+          "auto_location": "اختيار الموقع التلقائي",
+          "select_country": "اختيار الدولة",
+          "search_country": "البحث عن دولة",
+          "select_region": "اختيار المنطقة",
+          "search_region": "البحث عن منطقة",
+
+          "daily_quote": "اقتباس اليوم",
+
           'page_onyuz': 'الوَجهُ الأَمَامِيُّ',
           'page_arka ': 'الوَرَقَةُ الخَلفِيَّةُ',
           'page_sonraki': 'اليومُ التَّالي',
@@ -1352,7 +1439,7 @@ class Dil extends Translations {
           'geceyarisi': 'نصف فترة الصيام',
           'teheccud': 'نِصفُ اللَّيل',
           'seher': 'تَهَجُّد',
-          'kıble': 'السَّحَر',
+          'kible': 'السَّحَر',
 
 //Rumi Aylar
           'RumiAylar[1]': 'يناير - كانون الثاني',
@@ -1563,7 +1650,7 @@ class Dil extends Translations {
           'remain_aksam': "الوقت المتبقي حتى صلاةِ المغرب...",
           'remain_yatsi': "الوقت المتبقي حتى صلاةِ العشاء...",
 
-          'KibleSaatiYazisi':
+          'kibleSaatiYazisi':
               "من توجه للشمس في ساعة القبلة ،كان قد توجه للقبلة.",
 
           'popupBaslik': "İmsâk vakti hakkında mühim açıklama !..",
@@ -1572,13 +1659,29 @@ class Dil extends Translations {
           'DogruImsak': "Doğru imsâk vakti açıklaması",
         },
         'tt_RU': {
+          "share": "Бүлешергә",
           "daily_event": "Көн вакыйгасы",
-          "daily_quote": "Көн цитатасы",
-          "prayer_times": "НӘМАЗ ВАКЫТЛАРЫ",
-          "HicriKameri": "Хиджри календаре",
+          "daily_quoute": "Көннең сүзе",
+          "prayer_times": "Намаз вакытлары",
+          "HicriKameri": "Хиҗри календарь",
           "language_selection": "Тел сайлау",
+          "location_selection": "Урын сайлау",
           "vakit": "Вакыт",
-          "saat": "Саат",
+          "saat": "Сәгать",
+          "bugun": "Бүген",
+          "tarih_sec": "Көн сайлау",
+          "search_city": "Шәһәр эзләү",
+          "kayitli_sehirler": "Сакланган шәһәрләр",
+          "konum_onay": "Урынны раслау",
+          "location_searching": "Урын эзләү...",
+          "auto_location": "Автоматик урын сайлау",
+          "select_country": "Ил сайлау",
+          "search_country": "Ил эзләү",
+          "select_region": "Төбәк сайлау",
+          "search_region": "Төбәк эзләү",
+
+          "daily_quote": "Көн цитатасы",
+
 // butonlar
           'page_onyuz': 'Алгы як',
           'page_arka': 'Алдагы сәхифә',
@@ -1612,7 +1715,7 @@ class Dil extends Translations {
           'geceyarisi': 'Дәһвә-и көбра',
           'teheccud': 'Төн уртасы',
           'seher': 'Тәһәҗҗүд',
-          'kıble': 'Сәхәр',
+          'kible': 'Сәхәр',
 
 //Rumi Aylar
           'RumiAylar[1]': 'Гыйнвар (Канун-ы сәни)',
@@ -1818,7 +1921,7 @@ class Dil extends Translations {
           'remain_aksam': "Ахшам намазына калган вакыт",
           'remain_yatsi': "Ястү намазына калган вакыт",
 
-          'KibleSaatiYazisi':
+          'kibleSaatiYazisi':
               "Кыйбла сәгате вакытында кояшка караган кемсә кыйбла тарафына баскан булыр.",
 
           'popupBaslik': "Имсакь вакыты турында мөһим ачыклама!..",
@@ -1827,13 +1930,28 @@ class Dil extends Translations {
           'DogruImsak': "Дөрес имсакь вакыты турында аңлатма",
         },
         'bg_BG': {
-          "daily_event": "Събитие на деня",
-          "daily_quote": "Цитат на деня",
-          "prayer_times": "ВРЕМЕ ЗА МОЛИТВА",
-          "HicriKameri": "Хиджри календар",
+          "share": "Споделяне",
+          "daily_event": "Дневно събитие",
+          "daily_quoute": "Дневен цитат",
+          "prayer_times": "ЧАСОВЕ ЗА МОЛИТВА",
+          "HicriKameri": "Хиджри Календар",
           "language_selection": "Избор на език",
+          "location_selection": "Избор на местоположение",
           "vakit": "Време",
           "saat": "Час",
+          "bugun": "Днес",
+          "tarih_sec": "Избери дата",
+          "search_city": "Търси град",
+          "kayitli_sehirler": "Запазени градове",
+          "konum_onay": "Потвърди местоположение",
+          "location_searching": "Търсене на местоположение...",
+          "auto_location": "Автоматичен избор на местоположение",
+          "select_country": "Избери държава",
+          "search_country": "Търси държава",
+          "select_region": "Избери регион",
+          "search_region": "Търси регион",
+
+          "daily_quote": "Цитат на деня",
 
           'page_onyuz': 'Лицева страна',
           'page_arka ': 'Обратна страна',
@@ -1867,7 +1985,7 @@ class Dil extends Translations {
           'geceyarisi': 'Дахве-и кюбра',
           'teheccud': 'Полунощ',
           'seher': 'Техеджуд',
-          'kıble': 'Сехер',
+          'kible': 'Сехер',
 
 //Rumi Aylar
           'RumiAylar[1]': 'Канун-и сани',
@@ -2080,7 +2198,7 @@ class Dil extends Translations {
           'remain_aksam': "Останолото време до вечерна молитва",
           'remain_yatsi': "Останалото време до Ятсъята",
 
-          'KibleSaatiYazisi':
+          'kibleSaatiYazisi':
               "Който по време на часа за Къбле се обърне към слънцето,ще бъде обърнат към къблето.",
 
           'popupBaslik': "Important information about Imsâk time !..",
@@ -2089,13 +2207,29 @@ class Dil extends Translations {
           'DogruImsak': "Information about correct Imsâk time",
         },
         'kk_KZ': {
+          "share": "Бөлісу",
           "daily_event": "Күннің оқиғасы",
-          "daily_quote": "Күннің дәйексөзі",
-          "prayer_times": "НАҒЫЗ УАҚЫТТАР",
-          "HicriKameri": "Хиджри күнтізбесі",
+          "daily_quoute": "Күннің сөзі",
+          "prayer_times": "НАМАЗ УАҚЫТТАРЫ",
+          "HicriKameri": "Хижри күнтізбе",
           "language_selection": "Тіл таңдау",
+          "location_selection": "Орналасқан жерді таңдау",
           "vakit": "Уақыт",
           "saat": "Сағат",
+          "bugun": "Бүгін",
+          "tarih_sec": "Күнді таңдау",
+          "search_city": "Қаланы іздеу",
+          "kayitli_sehirler": "Сақталған қалалар",
+          "konum_onay": "Орналасқан жерді растау",
+          "location_searching": "Орналасқан жер ізделуде...",
+          "auto_location": "Автоматты таңдау",
+          "select_country": "Елді таңдау",
+          "search_country": "Елді іздеу",
+          "select_region": "Аймақты таңдау",
+          "search_region": "Аймақты іздеу",
+
+          "daily_quote": "Күннің дәйексөзі",
+
 // butonlar
           'page_onyuz': 'Алғы бет',
           'page_arka ': 'Артқы бет',
@@ -2129,7 +2263,7 @@ class Dil extends Translations {
           'geceyarisi': 'Дахуаи кубра',
           'teheccud': 'Түн ортасы',
           'seher': 'Тәһәжжүд',
-          'kıble': 'Сәре',
+          'kible': 'Сәре',
 
 //Rumi Aylar
           'RumiAylar[1]': 'Қаңтар',
@@ -2338,7 +2472,7 @@ class Dil extends Translations {
           'remain_aksam': "Шамға дейінгі уақыт",
           'remain_yatsi': "Құптанға дейінгі уақыт",
 
-          'KibleSaatiYazisi':
+          'kibleSaatiYazisi':
               "Құбыла сағатында күнге қараған адам Құбыла бағытына қараған болады.",
 
           'popupBaslik': "Important information about Imsâk time !..",
@@ -2347,13 +2481,28 @@ class Dil extends Translations {
           'DogruImsak': "Information about correct Imsâk time",
         },
         'ky_KG': {
+          "share": "Бөлүшүү",
           "daily_event": "Күндүн окуясы",
-          "daily_quote": "Күндүн цитатасы",
-          "prayer_times": "НАМАЗ УАКЫТТАРЫ",
-          "HicriKameri": "Хиджри күнтүзү",
-          "language_selection": "Тил тандаш",
+          "daily_quoute": "Күндүн сөзү",
+          "prayer_times": "НАМАЗ УБАКЫТТАРЫ",
+          "HicriKameri": "Хижри календарь",
+          "language_selection": "Тилди тандоо",
+          "location_selection": "Жайгашкан жерди тандоо",
           "vakit": "Убакыт",
           "saat": "Саат",
+          "bugun": "Бүгүн",
+          "tarih_sec": "Күн тандоо",
+          "search_city": "Шаарды издөө",
+          "kayitli_sehirler": "Сакталган шаарлар",
+          "konum_onay": "Жайгашкан жерди ырастоо",
+          "location_searching": "Жайгашкан жер издөөдө...",
+          "auto_location": "Автоматтык тандоо",
+          "select_country": "Мамлекетти тандоо",
+          "search_country": "Мамлекетти издөө",
+          "select_region": "Аймакты тандоо",
+          "search_region": "Аймакты издөө",
+
+          "daily_quote": "Күндүн цитатасы",
 
 // butonlar
           'page_onyuz': 'Алдыңкы бети',
@@ -2388,7 +2537,7 @@ class Dil extends Translations {
           'geceyarisi': 'Дахва-и кубра',
           'teheccud': 'Түн жарымы',
           'seher': 'Тахажжуд',
-          'kıble': 'Шафак',
+          'kible': 'Шафак',
 
 //Rumi Aylar
           'RumiAylar[1]': 'Канун-и Сани',
@@ -2596,7 +2745,7 @@ class Dil extends Translations {
           'remain_aksam': "Шамга калган убакыт",
           'remain_yatsi': "Куптанга калган убакыт",
 
-          'KibleSaatiYazisi':
+          'kibleSaatiYazisi':
               "Кыбыла сааты убактысында Күндү караган киши кыбылага караган болот.",
 
 //'popupBaslik' : "Имсак убактысы тууралуу маанилүү түшүндүрмө !..",
@@ -2605,13 +2754,27 @@ class Dil extends Translations {
 //'DogruImsak' : "Туура имсак убактысы түшүндүрмөсү",
         },
         'pl_PL': {
-          "daily_event": "Wydarzenie dnia",
-          "daily_quote": "Cytat dnia",
+          "share": "Udostępnij",
+          "daily_event": "Wydarzenie Dnia",
+          "daily_quoute": "Cytat Dnia",
           "prayer_times": "CZASY MODLITWY",
           "HicriKameri": "Kalendarz Hijri",
-          "language_selection": "Wybór języka",
+          "language_selection": "Wybór Języka",
+          "location_selection": "Wybór Lokalizacji",
           "vakit": "Czas",
           "saat": "Godzina",
+          "bugun": "Dzisiaj",
+          "tarih_sec": "Wybierz Datę",
+          "search_city": "Szukaj Miasta",
+          "kayitli_sehirler": "Zapisane Miasta",
+          "konum_onay": "Potwierdź Lokalizację",
+          "location_searching": "Wyszukiwanie Lokalizacji...",
+          "auto_location": "Automatyczny Wybór Lokalizacji",
+          "select_country": "Wybierz Kraj",
+          "search_country": "Szukaj Kraju",
+          "select_region": "Wybierz Region",
+          "search_region": "Szukaj Regionu",
+
 // butonlar
 
           'page_onyuz': 'Strona główna',
@@ -2646,7 +2809,7 @@ class Dil extends Translations {
           'geceyarisi': 'Dahwe-i Kubra',
           'teheccud': 'Północ',
           'seher': 'Tehedżdżud',
-          'kıble': 'Świt',
+          'kible': 'Świt',
 
 //Rumi Aylar
           'RumiAylar[1]': 'Kanun-i Sani',
@@ -2858,8 +3021,8 @@ class Dil extends Translations {
           'remain_aksam': 'Czas do Maghrib',
           'remain_yatsi': 'Czas do Isza',
 
-          'KibleSaatiYazisi':
-              "Obrocic sie do slonca na czasie Kıble(Mahometanin dokanano modlitwa zeby obrocic do Kıble), to znaczy obrocic sie do kıble.",
+          'kibleSaatiYazisi':
+              "Obrocic sie do slonca na czasie Kıble(Mahometanin dokanano modlitwa zeby obrocic do Kıble), to znaczy obrocic sie do kible.",
 
           'popupBaslik': "Important information about Imsâk time !..",
           'YanlisImsak': "Explanation about wrong Imsâk time",
@@ -2867,13 +3030,26 @@ class Dil extends Translations {
           'DogruImsak': "Information about correct Imsâk time",
         },
         'ru_RU': {
-          "daily_event": "Событие дня",
-          "daily_quote": "Цитата дня",
-          "prayer_times": "ВРЕМЯ МОЛИТВЫ",
-          "HicriKameri": "Хиджрийский календарь",
-          "language_selection": "Выбор языка",
+          "share": "Поделиться",
+          "daily_event": "Событие Дня",
+          "daily_quoute": "Цитата Дня",
+          "prayer_times": "ВРЕМЕНА МОЛИТВЫ",
+          "HicriKameri": "Хиджра Календарь",
+          "language_selection": "Выбор Языка",
+          "location_selection": "Выбор Местоположения",
           "vakit": "Время",
           "saat": "Час",
+          "bugun": "Сегодня",
+          "tarih_sec": "Выбрать Дату",
+          "search_city": "Поиск Города",
+          "kayitli_sehirler": "Сохраненные Города",
+          "konum_onay": "Подтвердить Местоположение",
+          "location_searching": "Поиск местоположения...",
+          "auto_location": "Автоматический Выбор Местоположения",
+          "select_country": "Выбрать Страну",
+          "search_country": "Поиск Страны",
+          "select_region": "Выбрать Регион",
+          "search_region": "Поиск Региона",
 // butonlar
           'page_onyuz': 'Лицевая сторона',
           'page_arka': 'Обратная сторона',
@@ -2907,7 +3083,7 @@ class Dil extends Translations {
           'geceyarisi': 'Духа-и кубра',
           'teheccud': 'Полночь',
           'seher': 'Тахадджуд',
-          'kıble': 'Сахур',
+          'kible': 'Сахур',
 
 //Rumi Aylar
           'RumiAylar[1]': 'Канун-и сани',
@@ -3119,7 +3295,7 @@ class Dil extends Translations {
           'remain_aksam': 'Время до Магриб',
           'remain_yatsi': 'Время до Иша',
 
-          'KibleSaatiYazisi':
+          'kibleSaatiYazisi':
               "Тот кто во Время Кыбле повернется в сторону солнца, тот он также будет напротив Кыбле.",
 
           'popupBaslik': "Important information about Imsâk time !..",
@@ -3128,13 +3304,26 @@ class Dil extends Translations {
           'DogruImsak': "Information about correct Imsâk time",
         },
         'ro_RO': {
-          "daily_event": "Evenimentul zilei",
-          "daily_quote": "Citatul zilei",
-          "prayer_times": "ORA DE RUGĂCIUNE",
+          "share": "Distribuie",
+          "daily_event": "Evenimentul Zilei",
+          "daily_quoute": "Citatul Zilei",
+          "prayer_times": "TIMPI DE RUGĂCIUNE",
           "HicriKameri": "Calendar Hijri",
-          "language_selection": "Selectare limbă",
+          "language_selection": "Selectarea Limbii",
+          "location_selection": "Selectarea Locației",
           "vakit": "Timp",
           "saat": "Oră",
+          "bugun": "Astăzi",
+          "tarih_sec": "Alegeți Data",
+          "search_city": "Căutați Oraș",
+          "kayitli_sehirler": "Orașe Salvate",
+          "konum_onay": "Confirmați Locația",
+          "location_searching": "Căutare Locație...",
+          "auto_location": "Selectarea Automată a Locației",
+          "select_country": "Alegeți Țara",
+          "search_country": "Căutați Țara",
+          "select_region": "Alegeți Regiunea",
+          "search_region": "Căutați Regiunea",
 // butonlar
           'page_onyuz': 'Față',
           'page_arka': 'Verso',
@@ -3168,7 +3357,7 @@ class Dil extends Translations {
           'geceyarisi': 'Dahve-i kubra',
           'teheccud': 'Jumătatea nopții',
           'seher': 'Tehejjud',
-          'kıble': 'Zori',
+          'kible': 'Zori',
 
 //Rumi Aylar
           'RumiAylar[1]': 'Ianuarie',
@@ -3382,7 +3571,7 @@ class Dil extends Translations {
           'remain_aksam': "Timp rămas până la rugăciunea de apus",
           'remain_yatsi': "Timp rămas până la rugăciunea de noapte",
 
-          'KibleSaatiYazisi':
+          'kibleSaatiYazisi':
               "Ore, timp in soare a reveni la Qiblah Qibla fi înapoi.",
 
           'popupBaslik': "Important information about Imsâk time !..",
@@ -3391,13 +3580,26 @@ class Dil extends Translations {
           'DogruImsak': "Information about correct Imsâk time",
         },
         'sq_AL': {
-          "daily_event": "Ngjarja e ditës",
-          "daily_quote": "Citim i ditës",
-          "prayer_times": "KOHËT E LUTES",
-          "HicriKameri": "Kalendari Hijri",
-          "language_selection": "Zgjedhja e gjuhës",
+          "share": "Shpërndaj",
+          "daily_event": "Ngjarja e Ditës",
+          "daily_quoute": "Citat i Ditës",
+          "prayer_times": "ORARET E NAMAZIT",
+          "HicriKameri": "Kalendar Hixhri",
+          "language_selection": "Zgjedhja e Gjuhës",
+          "location_selection": "Zgjedhja e Vendndodhjes",
           "vakit": "Koha",
-          "saat": "Orë",
+          "saat": "Ora",
+          "bugun": "Sot",
+          "tarih_sec": "Zgjidhni Datën",
+          "search_city": "Kërkoni Qytetin",
+          "kayitli_sehirler": "Qytetet e Ruajtura",
+          "konum_onay": "Konfirmo Vendndodhjen",
+          "location_searching": "Po kërkohet Vendndodhja...",
+          "auto_location": "Zgjedhja Automatike e Vendndodhjes",
+          "select_country": "Zgjidhni Shtetin",
+          "search_country": "Kërkoni Shtetin",
+          "select_region": "Zgjidhni Rajonin",
+          "search_region": "Kërkoni Rajonin",
 // butonlar
           'page_onyuz': 'Faqa e Parë',
           'page_arka': 'Faqa Mbrapa',
@@ -3431,7 +3633,7 @@ class Dil extends Translations {
           'geceyarisi': 'Dahve-i Kübrâ',
           'teheccud': 'Mesnata',
           'seher': 'Tehexh-xhud',
-          'kıble': 'Seher',
+          'kible': 'Kible',
 
 //Rumi Aylar
           'RumiAylar[1]': 'Janar',
@@ -3646,7 +3848,7 @@ class Dil extends Translations {
           'remain_aksam': "Koha e mbetur per Akshamin",
           'remain_yatsi': "Koha e mbetur per Jacine",
 
-          'KibleSaatiYazisi':
+          'kibleSaatiYazisi':
               "Në kohën e orës së Qabes, kur kthehesh nga dielli je kthyer edhe nga Qabja.",
 
           'popupBaslik': "Important information about Imsâk time !..",
@@ -3655,13 +3857,26 @@ class Dil extends Translations {
           'DogruImsak': "Information about correct Imsâk time",
         },
         'uz_UZ': {
-          "daily_event": "Kun hodisasi",
-          "daily_quote": "Kun so'zi",
-          "prayer_times": "NAMOZ VAQTILARI",
-          "HicriKameri": "Hijri taqvimi",
-          "language_selection": "Til tanlash",
+          "share": "Ulashish",
+          "daily_event": "Kunning Hodisasi",
+          "daily_quoute": "Kunning Iqtibosi",
+          "prayer_times": "NAMOZ VAQTLARI",
+          "HicriKameri": "Hijriy Taqvim",
+          "language_selection": "Til Tanlovi",
+          "location_selection": "Joylashuvni Tanlash",
           "vakit": "Vaqt",
           "saat": "Soat",
+          "bugun": "Bugun",
+          "tarih_sec": "Sana Tanlang",
+          "search_city": "Shahar Qidiring",
+          "kayitli_sehirler": "Saqlangan Shaharlar",
+          "konum_onay": "Joylashuvni Tasdiqlang",
+          "location_searching": "Joylashuv Qidirilmoqda...",
+          "auto_location": "Avtomatik Joylashuv Tanlovi",
+          "select_country": "Davlatni Tanlang",
+          "search_country": "Davlatni Qidiring",
+          "select_region": "Hududni Tanlang",
+          "search_region": "Hududni Qidiring",
 // butonlar
           'page_onyuz': 'Олд саҳифа',
           'page_arka': 'Орқа саҳифа',
@@ -3695,7 +3910,7 @@ class Dil extends Translations {
           'geceyarisi': 'Дахва-и кубро',
           'teheccud': 'Ярим кеча',
           'seher': 'Таҳажжуд',
-          'kıble': 'Саҳар',
+          'kible': 'Саҳар',
 
 //Rumi Aylar
           'RumiAylar[1]': 'Қонун-и соний',
@@ -3904,7 +4119,7 @@ class Dil extends Translations {
           'remain_aksam': "Шомгача қолган вақт",
           'remain_yatsi': "Хуфтонгача қолган вақт",
 
-          'KibleSaatiYazisi':
+          'kibleSaatiYazisi':
               "Кибла соати вактида куёш томонга караган одам киблага йуналиб турган булади.",
 
           'popupBaslik': "Important information about Imsâk time !..",

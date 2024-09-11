@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -8,112 +7,125 @@ import 'format_number.dart';
 import 'vakit.dart';
 
 class Functions {
-
-static Widget buildNextPrayerTimeBox(List<PrayerTime> prayerTimes) {
-  if (prayerTimes.isEmpty) {
-    return const SizedBox.shrink();
+  static String formatWithLocale(int number, String locale) {
+    final paddingChar = (locale == 'ar' || locale == 'fa') ? '٠' : '0';
+    return formatNumber(number, locale).padLeft(2, paddingChar);
   }
 
-  DateTime now = DateTime.now();
-  DateTime selectedDate = now;
-
-  DateTime? nextPrayerDateTime;
-  String nextPrayerTimeKey = '';
-
-  for (var prayerTime in prayerTimes) {
-    DateTime imsak = DateTime.parse(
-        '${selectedDate.toString().split(' ')[0]} ${prayerTime.imsak}');
-    DateTime sabah = DateTime.parse(
-        '${selectedDate.toString().split(' ')[0]} ${prayerTime.sabah}');
-    DateTime gunes = DateTime.parse(
-        '${selectedDate.toString().split(' ')[0]} ${prayerTime.gunes}');
-    DateTime ogle = DateTime.parse(
-        '${selectedDate.toString().split(' ')[0]} ${prayerTime.ogle}');
-    DateTime ikindi = DateTime.parse(
-        '${selectedDate.toString().split(' ')[0]} ${prayerTime.ikindi}');
-    DateTime aksam = DateTime.parse(
-        '${selectedDate.toString().split(' ')[0]} ${prayerTime.aksam}');
-    DateTime yatsi = DateTime.parse(
-        '${selectedDate.toString().split(' ')[0]} ${prayerTime.yatsi}');
-
-    if (now.isBefore(imsak)) {
-      nextPrayerDateTime = imsak;
-      nextPrayerTimeKey = 'remain_imsak'.tr; // Imsak
-      break;
-    } else if (now.isBefore(sabah)) {
-      nextPrayerDateTime = sabah;
-      nextPrayerTimeKey = 'remain_sabah'.tr; // Sabah
-      break;
-    } else if (now.isBefore(gunes)) {
-      nextPrayerDateTime = gunes;
-      nextPrayerTimeKey = 'remain_gunes'.tr; // Güneş
-      break;
-    } else if (now.isBefore(ogle)) {
-      nextPrayerDateTime = ogle;
-      nextPrayerTimeKey = 'remain_ogle'.tr; // Öğle
-      break;
-    } else if (now.isBefore(ikindi)) {
-      nextPrayerDateTime = ikindi;
-      nextPrayerTimeKey = 'remain_ikindi'.tr; // İkindi
-      break;
-    } else if (now.isBefore(aksam)) {
-      nextPrayerDateTime = aksam;
-      nextPrayerTimeKey = 'remain_aksam'.tr; // Akşam
-      break;
-    } else if (now.isBefore(yatsi)) {
-      nextPrayerDateTime = yatsi;
-      nextPrayerTimeKey = 'remain_yatsi'.tr; // Yatsı
-      break;
+  static Widget buildNextPrayerTimeBox(List<PrayerTime> prayerTimes) {
+    if (prayerTimes.isEmpty) {
+      return const SizedBox.shrink();
     }
-  }
 
-  if (nextPrayerDateTime == null) {
-    selectedDate = selectedDate.add(const Duration(days: 1));
-    nextPrayerDateTime = DateTime.parse(
-        '${selectedDate.toString().split(' ')[0]} ${prayerTimes[0].imsak}');
-    nextPrayerTimeKey = 'remain_imsak'.tr; // Imsak
-  }
+    DateTime now = DateTime.now();
+    DateTime selectedDate = now;
 
-  Duration timeUntilNextPrayer = nextPrayerDateTime.difference(now);
-  String formattedHours = formatNumber(timeUntilNextPrayer.inHours, Get.locale?.languageCode ?? 'tr');
-  String formattedMinutes = formatNumber(timeUntilNextPrayer.inMinutes % 60, Get.locale?.languageCode ?? 'tr');
-  String formattedSeconds = formatNumber(timeUntilNextPrayer.inSeconds % 60, Get.locale?.languageCode ?? 'tr');
+    DateTime? nextPrayerDateTime;
+    String nextPrayerTimeKey = '';
 
-  String formattedTimeUntilNextPrayer =
-      '${formattedHours.padLeft(2, '0')}:${formattedMinutes.padLeft(2, '0')}:${formattedSeconds.padLeft(2, '0')}';
+    for (var prayerTime in prayerTimes) {
+      DateTime imsak = DateTime.parse(
+          '${selectedDate.toString().split(' ')[0]} ${prayerTime.imsak}');
+      DateTime sabah = DateTime.parse(
+          '${selectedDate.toString().split(' ')[0]} ${prayerTime.sabah}');
+      DateTime gunes = DateTime.parse(
+          '${selectedDate.toString().split(' ')[0]} ${prayerTime.gunes}');
+      DateTime ogle = DateTime.parse(
+          '${selectedDate.toString().split(' ')[0]} ${prayerTime.ogle}');
+      DateTime ikindi = DateTime.parse(
+          '${selectedDate.toString().split(' ')[0]} ${prayerTime.ikindi}');
+      DateTime aksam = DateTime.parse(
+          '${selectedDate.toString().split(' ')[0]} ${prayerTime.aksam}');
+      DateTime yatsi = DateTime.parse(
+          '${selectedDate.toString().split(' ')[0]} ${prayerTime.yatsi}');
 
-  Color backgroundColor = const Color(0xffb293153);
+      if (now.isBefore(imsak)) {
+        nextPrayerDateTime = imsak;
+        nextPrayerTimeKey = 'remain_imsak'.tr; // Imsak
+        break;
+      } else if (now.isBefore(sabah)) {
+        nextPrayerDateTime = sabah;
+        nextPrayerTimeKey = 'remain_sabah'.tr; // Sabah
+        break;
+      } else if (now.isBefore(gunes)) {
+        nextPrayerDateTime = gunes;
+        nextPrayerTimeKey = 'remain_gunes'.tr; // Güneş
+        break;
+      } else if (now.isBefore(ogle)) {
+        nextPrayerDateTime = ogle;
+        nextPrayerTimeKey = 'remain_ogle'.tr; // Öğle
+        break;
+      } else if (now.isBefore(ikindi)) {
+        nextPrayerDateTime = ikindi;
+        nextPrayerTimeKey = 'remain_ikindi'.tr; // İkindi
+        break;
+      } else if (now.isBefore(aksam)) {
+        nextPrayerDateTime = aksam;
+        nextPrayerTimeKey = 'remain_aksam'.tr; // Akşam
+        break;
+      } else if (now.isBefore(yatsi)) {
+        nextPrayerDateTime = yatsi;
+        nextPrayerTimeKey = 'remain_yatsi'.tr; // Yatsı
+        break;
+      }
+    }
 
-  return Container(
-    margin: const EdgeInsets.only(bottom: 10),
-    padding: const EdgeInsets.all(5),
-    alignment: Alignment.center,
-    decoration: BoxDecoration(
-      color: backgroundColor,
-      borderRadius: BorderRadius.circular(14),
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text.rich(
-          TextSpan(
-            children: [
-              TextSpan(
-                  text: '$nextPrayerTimeKey ',
-                  style: DateColumnWidgetStyles.subtitleStyle
-                      .copyWith(color: Colors.white)),
-              TextSpan(
-                  text: formattedTimeUntilNextPrayer,
-                  style: DateColumnWidgetStyles.titleStyle
-                      .copyWith(fontSize: 24, color: Colors.white)),
-            ],
+    if (nextPrayerDateTime == null) {
+      selectedDate = selectedDate.add(const Duration(days: 1));
+      nextPrayerDateTime = DateTime.parse(
+          '${selectedDate.toString().split(' ')[0]} ${prayerTimes[0].imsak}');
+      nextPrayerTimeKey = 'remain_imsak'.tr; // Imsak
+    }
+
+    Duration timeUntilNextPrayer = nextPrayerDateTime.difference(now);
+    String locale = Get.locale?.languageCode ?? 'tr';
+    String formattedHours =
+        formatWithLocale(timeUntilNextPrayer.inHours, locale);
+    String formattedMinutes =
+        formatWithLocale(timeUntilNextPrayer.inMinutes % 60, locale);
+    String formattedSeconds =
+        formatWithLocale(timeUntilNextPrayer.inSeconds % 60, locale);
+
+    String formattedTimeUntilNextPrayer =
+        '$formattedHours:$formattedMinutes:$formattedSeconds';
+
+    Color backgroundColor = const Color(0xffb293153);
+
+    return Container(
+      padding: const EdgeInsets.all(5),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(
+                    text: '$nextPrayerTimeKey ',
+                    style: DateColumnWidgetStyles.subtitleStyle
+                        .copyWith(color: Colors.white)),
+                TextSpan(
+                    text: formattedTimeUntilNextPrayer,
+                    style: DateColumnWidgetStyles.titleStyle
+                        .copyWith(fontSize: 24, color: Colors.white)),
+              ],
+            ),
           ),
-        ),
-      ],
-    ),
-  );
-}
+        ],
+      ),
+    );
+  }
 
+  static String cleanHtmlLinks(String htmlString) {
+    htmlString = htmlString.replaceAll('src=\" http:', 'src=\"https:');
+
+  //  RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
+    return htmlString;
+  }
 
   static String cleanHtmlTags(String htmlString) {
     htmlString = htmlString
@@ -185,5 +197,4 @@ static Widget buildNextPrayerTimeBox(List<PrayerTime> prayerTimes) {
         RegExp(r'<[^>]*>', multiLine: true, caseSensitive: false);
     return htmlString.replaceAll(regExp, '').trim();
   }
-  
 }

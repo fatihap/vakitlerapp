@@ -8,7 +8,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../classes/countDown_function.dart';
 import '../classes/custom_footer_widget.dart';
-import '../classes/functions.dart';
 import '../classes/vakit.dart';
 import '../services/PrayerService.dart';
 import '../services/calendar_service.dart';
@@ -40,7 +39,6 @@ class PrayTimes extends StatefulWidget {
 
 class PrayTimesState extends State<PrayTimes>
     with AutomaticKeepAliveClientMixin {
-      
   @override
   bool get wantKeepAlive => true;
   List<PrayerTime> prayerTimes = [];
@@ -63,6 +61,7 @@ class PrayTimesState extends State<PrayTimes>
   bool isInitialized = false;
 
   late PageController pageController;
+  late ScrollController scrollController;
   int pageIndex = 0;
 
   @override
@@ -72,6 +71,7 @@ class PrayTimesState extends State<PrayTimes>
       isInitialized = true;
       selectedDate = DateTime.now();
       pageController = PageController();
+      scrollController = ScrollController();
       fetchTakvim(selectedDate);
       initializeMethodChannel();
       initUrlLauncher();
@@ -86,11 +86,11 @@ class PrayTimesState extends State<PrayTimes>
   void dispose() {
     timer.cancel();
     pageController.dispose();
+    scrollController.dispose();
     super.dispose();
   }
 
   void initUrlLauncher() async {
-    // ignore: deprecated_member_use
     if (await canLaunch('prayertimes://nextPrayerTime')) {}
   }
 
@@ -175,9 +175,7 @@ class PrayTimesState extends State<PrayTimes>
           });
         }
       });
-    } catch (e) {
-      // Handle exceptions
-    }
+    } catch (e) {}
 
     if (mounted) {
       setState(() {
@@ -230,7 +228,6 @@ class PrayTimesState extends State<PrayTimes>
     return '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}';
   }
 
-
   void updateCountdown() {
     Map<String, dynamic> countdownInfo =
         CountdownUtil.updateCountdown(prayerTimes, selectedDate);
@@ -238,85 +235,6 @@ class PrayTimesState extends State<PrayTimes>
       countdown = countdownInfo['countdown'];
       selectedIndex = countdownInfo['selectedIndex'];
     });
-  }
-
-  Widget buildBody() {
-    return isLoading
-        ? const Center(child: CircularProgressIndicator())
-        : PageView(
-            controller: pageController,
-            onPageChanged: (index) {
-              setState(() {
-                pageIndex = index;
-              });
-            },
-            children: [
-              SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    buildCombinedCalendarAndCitySelectionCard(),
-                    const SizedBox(height: 8),
-                    if (gununSozu.isNotEmpty)
-                      Text('daily_quoute'.tr,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              color: Color.fromARGB(255, 214, 215, 221),
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold)),
-                    DailyQuouteWidget(context: context, gununSozu: gununSozu),
-                    const SizedBox(height: 8),
-                    if (prayerTimes.isNotEmpty)
-                      ReusablePrayerTimesSection(
-                        prayerTimes: prayerTimes,
-                        selectedCityId: widget.selectedCityId,
-                        selectedCityName: widget.selectedCityName,
-                        selectedDate : selectedDate,
-                      ),
-                    const SizedBox(height: 8),
-                    if (isToday(selectedDate))
-                      Functions.buildNextPrayerTimeBox(prayerTimes),
-                    ReusableCardWidget(
-                      goToToday: goToToday,
-                      selectDate: () => selectDate(context),
-                      selectedDate: selectedDate,
-                      onDateChanged: (newDate) {
-                        setState(() {
-                          selectedDate = newDate;
-                        });
-                        initializePrayerTimes();
-                      },
-                    ),
-                    const SizedBox(height: 12),
-                    if (gununOlayi.isNotEmpty)
-                      Text('daily_event'.tr,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              color: Color.fromARGB(255, 214, 215, 221),
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold)),
-                    if (gununOlayi.isNotEmpty)
-                      DailyEventWidget(
-                          context: context, gununOlayi: gununOlayi),
-                    const SizedBox(height: 12),
-                    const CustomFooter(
-                      text: 'www.turktakvim.com',
-                      backgroundColor: Colors.transparent,
-                      textColor: Colors.white,
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ],
-                ),
-              ),
-              AllPrayTimes(
-                selectedCityId: widget.selectedCityId,
-                selectedCityName: widget.selectedCityName,
-                selectedDate: selectedDate,
-              ),
-              const TakvimPage(),
-            ],
-          );
   }
 
   Widget buildCombinedCalendarAndCitySelectionCard() {
@@ -337,20 +255,6 @@ class PrayTimesState extends State<PrayTimes>
       ),
       child: Stack(
         children: [
-          /* ClipRRect(
-            borderRadius: BorderRadius.circular(15.0),
-            child: AspectRatio(
-              aspectRatio: 16 / 9,
-              child: Image.asset(
-                'assets/images/ttlogo.png',
-                fit: BoxFit.cover,
-                color: const Color.fromARGB(255, 127, 141, 175),
-                width: double.infinity,
-                height: double.infinity,
-              ),
-            ),
-          ),
-          */
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Column(
@@ -376,15 +280,9 @@ class PrayTimesState extends State<PrayTimes>
     );
   }
 
-  bool isToday(DateTime date) {
-    final now = DateTime.now();
-    return date.year == now.year &&
-        date.month == now.month &&
-        date.day == now.day;
+  Future<void> handleRefresh() async {
+    goToToday(); 
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -398,9 +296,92 @@ class PrayTimesState extends State<PrayTimes>
               fit: BoxFit.cover,
             ),
           ),
-          isLoading
-              ? const Center(child: CircularProgressIndicator())
-              : buildBody(),
+          PageView(
+            controller: pageController,
+            onPageChanged: (index) {
+              setState(() {
+                pageIndex = index;
+              });
+            },
+            children: [
+              RefreshIndicator(
+                onRefresh: handleRefresh,
+                child: NotificationListener<ScrollNotification>(
+                  onNotification: (scrollInfo) {
+                    if (scrollInfo.metrics.pixels == 0 &&
+                        scrollInfo is OverscrollNotification &&
+                        scrollInfo.overscroll < 0) {
+                      return false;
+                    }
+                    return true;
+                  },
+                  child: SingleChildScrollView(
+                    controller: scrollController,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        buildCombinedCalendarAndCitySelectionCard(),
+                        const SizedBox(height: 8),
+                        if (gununSozu.isNotEmpty)
+                          Text('daily_quoute'.tr,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  color: Color.fromARGB(255, 214, 215, 221),
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold)),
+                        DailyQuouteWidget(
+                            context: context, gununSozu: gununSozu),
+                        if (prayerTimes.isNotEmpty)
+                          ReusablePrayerTimesSection(
+                            prayerTimes: prayerTimes,
+                            selectedCityId: widget.selectedCityId,
+                            selectedCityName: widget.selectedCityName,
+                            selectedDate: selectedDate,
+                          ),
+                          
+                        ReusableCardWidget(
+                          goToToday: goToToday,
+                          selectDate: () => selectDate(context),
+                          selectedDate: selectedDate,
+                          onDateChanged: (newDate) {
+                            setState(() {
+                              selectedDate = newDate;
+                            });
+                            initializePrayerTimes();
+                          },
+                        ),
+                        const SizedBox(height: 12),
+                        if (gununOlayi.isNotEmpty)
+                          Text('daily_event'.tr,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  color: Color.fromARGB(255, 214, 215, 221),
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold)),
+                        if (gununOlayi.isNotEmpty)
+                          DailyEventWidget(
+                              context: context, gununOlayi: gununOlayi),
+                        const SizedBox(height: 12),
+                        const CustomFooter(
+                          text: 'www.turktakvim.com',
+                          backgroundColor: Colors.transparent,
+                          textColor: Colors.white,
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              AllPrayTimes(
+                selectedCityId: widget.selectedCityId,
+                selectedCityName: widget.selectedCityName,
+                selectedDate: selectedDate,
+              ),
+              const TakvimPage(),
+            ],
+          ),
         ],
       ),
     );

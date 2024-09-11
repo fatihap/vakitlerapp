@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import '../../../classes/format_number.dart';
 import '../../../styles/DateColumWidgetStyles.dart';
 
-
 class DateColumnWidget extends StatelessWidget {
   const DateColumnWidget({
     super.key,
@@ -22,7 +21,7 @@ class DateColumnWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String locale = Get.locale?.toString() ?? 'tr_TR'; // Get locale
+    final String locale = Get.locale?.languageCode ?? 'tr'; // Get locale
 
     final String dayName = 'HaftaninGunleri[${_selectedDate.weekday}]'.tr;
     final String monthName = 'SeneninAylari[${_selectedDate.month}]'.tr;

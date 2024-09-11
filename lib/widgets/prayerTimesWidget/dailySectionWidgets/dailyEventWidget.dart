@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:namazvakitleri/styles/DateColumWidgetStyles.dart';
+import 'package:share_plus/share_plus.dart'; // Share Plus paketini ekleyin
 
 import '../../../classes/functions.dart';
 
@@ -16,7 +17,7 @@ class DailyEventWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: const Color.fromARGB(255, 230, 240, 243),
+      color: const Color.fromARGB(170, 255, 255, 255),
       elevation: 4,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
@@ -28,12 +29,17 @@ class DailyEventWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GestureDetector(
-              onLongPress: () => Functions.copyGununOlayi(context, gununOlayi),
+              onLongPress: () {
+                Share.share(Functions.cleanHtmlTags(gununOlayi));
+              },
               child: Text(
                 textAlign: TextAlign.center,
                 Functions.cleanHtmlTags(gununOlayi),
                 style: DateColumnWidgetStyles.subtitleStyle.copyWith(
-                    fontSize: 18, color: const Color.fromARGB(255, 5, 14, 132)),
+                  fontSize: 18,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
             const SizedBox(height: 8),

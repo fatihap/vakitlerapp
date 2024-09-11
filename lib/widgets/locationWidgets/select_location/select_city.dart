@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:xml/xml.dart' as xml;
 
@@ -86,8 +87,8 @@ class _CitySelectionPageState extends State<CitySelectionPage> {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
-          'Şehir Seç',
+        title:  Text(
+          'search_city'.tr,
           style: TextStyles.labelStyle,
         ),
       ),
@@ -99,19 +100,19 @@ class _CitySelectionPageState extends State<CitySelectionPage> {
               controller: _searchController,
               onChanged: _filterCities,
               style: const TextStyle(color: Colors.white),
-              decoration: const InputDecoration(
-                labelText: 'Şehir Ara',
-                labelStyle: TextStyle(color: Colors.white, fontSize: 18), 
-                prefixIcon: Icon(Icons.search, color: Colors.white), 
+              decoration:  InputDecoration(
+                labelText: 'search_city'.tr,
+                labelStyle: const TextStyle(color: Colors.white, fontSize: 18), 
+                prefixIcon: const Icon(Icons.search, color: Colors.white), 
                 filled: true,
                 fillColor: Colors.black54,
-                border: UnderlineInputBorder(
+                border:const UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.white), 
                 ),
-                enabledBorder: UnderlineInputBorder(
+                enabledBorder:const UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.white), 
                 ),
-                focusedBorder: UnderlineInputBorder(
+                focusedBorder:const UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.white), 
                 ),
               ),

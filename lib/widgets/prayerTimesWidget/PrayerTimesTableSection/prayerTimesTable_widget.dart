@@ -118,7 +118,7 @@ class _ReusablePrayerTimeTableState extends State<ReusablePrayerTimeTable> {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(1.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: widget.prayerTimes.isNotEmpty
@@ -170,15 +170,16 @@ class _ReusablePrayerTimeTableState extends State<ReusablePrayerTimeTable> {
       ],
     );
 
-    String formattedTime = formatNumber(
-      int.parse(DateFormat('HH').format(DateFormat.Hm().parse(time))),
-      locale,
-    ) +
-    ':' +
-    formatNumber(
-      int.parse(DateFormat('mm').format(DateFormat.Hm().parse(time))),
-      locale,
-    );
+String formattedTime = formatNumber(
+  int.parse(DateFormat('HH').format(DateFormat.Hm().parse(time))),
+  locale,
+) +
+':' +
+formatNumber(
+  int.parse(DateFormat('mm').format(DateFormat.Hm().parse(time))),
+  locale,
+);
+
 
     Widget timeContainer = Container(
       padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
@@ -208,7 +209,7 @@ class _ReusablePrayerTimeTableState extends State<ReusablePrayerTimeTable> {
 
     Widget indicator = isCurrentPrayer
         ? Positioned(
-            left: 200,
+            left: 250,
             child: Transform.rotate(
               angle: 3.14,
               child: const Icon(
@@ -235,7 +236,7 @@ class _ReusablePrayerTimeTableState extends State<ReusablePrayerTimeTable> {
                     name,
                     style: DateColumnWidgetStyles.subtitleStyle.copyWith(
                       color: isCurrentPrayer
-                          ? const Color(0XFFc5cae9)
+                          ?  Colors.white
                           : Colors.black,
                     ),
                   ),
