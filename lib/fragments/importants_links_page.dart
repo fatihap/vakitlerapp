@@ -9,7 +9,7 @@ class ImportantLinksPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('important_links'.tr),
+        title: Text('OnemliLinkler'.tr),
       ),
       body: const WebView(
         initialUrl: 'https://www.turktakvim.com/html/bilgiler.php',

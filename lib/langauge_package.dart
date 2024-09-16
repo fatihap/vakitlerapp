@@ -13,6 +13,12 @@ class Dil extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'tr_TR': {
+            'year_day': 'Yılın',
+    'day_remaining': ' günü, Kalan Gün:',
+    'month': '. ay',
+    'days': ' Gün',
+    'week': '. hafta',
+
           'share': 'Paylaş',
           'daily_event': 'Günün Olayı',
           'daily_quoute': 'Günün Sözü',
@@ -267,7 +273,7 @@ class Dil extends Translations {
           'aksam_def':
               'Güneş kayboldukdan sonra başlayıp, şafak kararıncaya kadar, ya’nî kırmızılık kayboluncaya kadar devâm eder.',
           'yatsı_def':
-              'atsı, işâ demektir. İşâ-i evvel, yatsının ilk vaktidir. Batıdaki zâhirî (görünen) ufuk hattı üzerinde kırmızılığın kaybolması ile başlayan vakittir. Ya'
+              'Yatsı, işâ demektir. İşâ-i evvel, yatsının ilk vaktidir. Batıdaki zâhirî (görünen) ufuk hattı üzerinde kırmızılığın kaybolması ile başlayan vakittir. Ya'
                   'nî güneşin üst kenârının ufk-ı zâhirî (görünen ufuk) altında 17 derece aşağıya indiği vakittir. Yatsı nemâzının vakti, İmâmeyn’e (İmâm-ı Ebû Yûsüf ve İmâm-ı Muhammed’e) göre işâ-i evvel vaktinde başlar. Diğer üç mezhebde de böyledir.',
           'isaisani_def':
               'Batıdaki zâhirî (görünen) ufuk hattı üzerinde beyazlığın kaybolması ile başlayan vakittir. Ya'
@@ -292,6 +298,11 @@ class Dil extends Translations {
               'nî güneşin arka kenârının zâhirî ufuk hattı altına on derece irtifâ’a indikden sonraya bırakmak harâmdır. Hastalık, seferî olmak, hazır ta’âmı (yemeği) yimek için, bu kadar gecikdirilebilir.',
         },
         'en_US': {
+          'year_day': 'Day of the year',
+    'day_remaining': ', Days Remaining:',
+    'month': ' month',
+    'days': ' Days',
+    'week': ' week',
           "share": "Share",
           "daily_event": "Daily Event",
           "daily_quoute": "Daily Quote",
@@ -576,6 +587,11 @@ class Dil extends Translations {
               'Asr is also called asr-i awwal. It is the time when asr-i awwal starts according to the Two Imâms [Imâm Abû Yûsuf and Imâm Muhammad]. It is the same in the other three Madhhabs, too. It is the time when the shadow of everything becomes longer than its shadow at the time of true zawâl by as much as its height.',
         },
         'fa_IR': {
+          'year_day': 'روز از سال',
+    'day_remaining': '، روزهای باقیمانده:',
+    'month': ' ماه',
+    'days': ' روز',
+    'week': ' هفته',
           "share": "اشتراک‌گذاری",
           "daily_event": "رویداد روز",
           "daily_quoute": "سخن روز",
@@ -843,6 +859,11 @@ class Dil extends Translations {
           'DogruImsak': "Information about correct Imsâk time",
         },
         'bs_BA': {
+           'year_day': 'Dan u godini',
+    'day_remaining': ', Preostalo dana:',
+    'month': '. mjesec',
+    'days': ' dana',
+    'week': '. sedmica',
           "share": "Podijeli",
           "daily_event": "Dnevni Događaj",
           "daily_quoute": "Dnevni Citat",
@@ -864,7 +885,6 @@ class Dil extends Translations {
           "select_region": "Izaberite Regiju",
           "search_region": "Pretraži Regiju",
           "daily_quote": "Citati dana",
-        
 
           'page_onyuz': 'Prednja strana',
           'page_arka': 'Zadnji strana',
@@ -1116,6 +1136,11 @@ class Dil extends Translations {
           'DogruImsak': "Information about correct Imsâk time",
         },
         'az_AZ': {
+           'year_day': 'İlin',
+    'day_remaining': ' günü, Qalan Gün:',
+    'month': '. ay',
+    'days': ' Gün',
+    'week': '. həftə',
           "share": "Paylaş",
           "daily_event": "Günün Hadisəsi",
           "daily_quoute": "Günün Sözləri",
@@ -1384,6 +1409,11 @@ class Dil extends Translations {
           'DogruImsak': "Information about correct Imsâk time",
         },
         'ar_SA': {
+           'year_day': 'يوم في السنة',
+    'day_remaining': '، الأيام المتبقية:',
+    'month': ' شهر',
+    'days': ' يوم',
+    'week': ' أسبوع',
           "share": "مشاركة",
           "daily_event": "حدث اليوم",
           "daily_quoute": "اقتباس اليوم",
@@ -1659,6 +1689,11 @@ class Dil extends Translations {
           'DogruImsak': "Doğru imsâk vakti açıklaması",
         },
         'tt_RU': {
+           'year_day': 'Ел көне',
+    'day_remaining': ', Калган Көннәр:',
+    'month': '. ай',
+    'days': ' Көн',
+    'week': '. атна',
           "share": "Бүлешергә",
           "daily_event": "Көн вакыйгасы",
           "daily_quoute": "Көннең сүзе",
@@ -1930,6 +1965,11 @@ class Dil extends Translations {
           'DogruImsak': "Дөрес имсакь вакыты турында аңлатма",
         },
         'bg_BG': {
+          'year_day': 'Ден от годината',
+    'day_remaining': ', Оставащи дни:',
+    'month': '. месец',
+    'days': ' дни',
+    'week': '. седмица',
           "share": "Споделяне",
           "daily_event": "Дневно събитие",
           "daily_quoute": "Дневен цитат",
@@ -2207,6 +2247,11 @@ class Dil extends Translations {
           'DogruImsak': "Information about correct Imsâk time",
         },
         'kk_KZ': {
+           'year_day': 'Жылдың күні',
+    'day_remaining': ', Қалған Күндер:',
+    'month': '. ай',
+    'days': ' күн',
+    'week': '. апта',
           "share": "Бөлісу",
           "daily_event": "Күннің оқиғасы",
           "daily_quoute": "Күннің сөзі",
@@ -2481,6 +2526,11 @@ class Dil extends Translations {
           'DogruImsak': "Information about correct Imsâk time",
         },
         'ky_KG': {
+           'year_day': 'Жылдын күнү',
+    'day_remaining': ', Калган Күндөр:',
+    'month': '. ай',
+    'days': ' күн',
+    'week': '. жума',
           "share": "Бөлүшүү",
           "daily_event": "Күндүн окуясы",
           "daily_quoute": "Күндүн сөзү",
@@ -2754,6 +2804,11 @@ class Dil extends Translations {
 //'DogruImsak' : "Туура имсак убактысы түшүндүрмөсү",
         },
         'pl_PL': {
+              'year_day': 'Dzień roku',
+    'day_remaining': ', Pozostało dni:',
+    'month': '. miesiąc',
+    'days': ' dni',
+    'week': '. tydzień',
           "share": "Udostępnij",
           "daily_event": "Wydarzenie Dnia",
           "daily_quoute": "Cytat Dnia",
@@ -3030,6 +3085,11 @@ class Dil extends Translations {
           'DogruImsak': "Information about correct Imsâk time",
         },
         'ru_RU': {
+            'year_day': 'День в году',
+    'day_remaining': ', Оставшиеся дни:',
+    'month': '. месяц',
+    'days': ' дней',
+    'week': '. неделя',
           "share": "Поделиться",
           "daily_event": "Событие Дня",
           "daily_quoute": "Цитата Дня",
@@ -3304,6 +3364,11 @@ class Dil extends Translations {
           'DogruImsak': "Information about correct Imsâk time",
         },
         'ro_RO': {
+          'year_day': 'Zi din an',
+    'day_remaining': ', Zile rămase:',
+    'month': '. lună',
+    'days': ' zile',
+    'week': '. săptămână',
           "share": "Distribuie",
           "daily_event": "Evenimentul Zilei",
           "daily_quoute": "Citatul Zilei",
@@ -3580,6 +3645,11 @@ class Dil extends Translations {
           'DogruImsak': "Information about correct Imsâk time",
         },
         'sq_AL': {
+           'year_day': 'Ditë e vitit',
+    'day_remaining': ', Ditë të mbetura:',
+    'month': '. muaj',
+    'days': ' ditë',
+    'week': '. javë',
           "share": "Shpërndaj",
           "daily_event": "Ngjarja e Ditës",
           "daily_quoute": "Citat i Ditës",
@@ -3857,6 +3927,11 @@ class Dil extends Translations {
           'DogruImsak': "Information about correct Imsâk time",
         },
         'uz_UZ': {
+           'year_day': 'Yilning kuni',
+    'day_remaining': ', Qolgan Kunlar:',
+    'month': '. oy',
+    'days': ' kun',
+    'week': '. hafta',
           "share": "Ulashish",
           "daily_event": "Kunning Hodisasi",
           "daily_quoute": "Kunning Iqtibosi",
@@ -3877,7 +3952,7 @@ class Dil extends Translations {
           "search_country": "Davlatni Qidiring",
           "select_region": "Hududni Tanlang",
           "search_region": "Hududni Qidiring",
-// butonlar
+  
           'page_onyuz': 'Олд саҳифа',
           'page_arka': 'Орқа саҳифа',
           'page_sonraki': 'Кейинги кун',

@@ -101,7 +101,7 @@ class TakvimPageState extends State<TakvimPage> {
         children: [
           Positioned.fill(
             child:
-                Image.asset('assets/images/loop_world.gif', fit: BoxFit.fill),
+                Image.asset('assets/images/loop_world.gif', fit: BoxFit.cover),
           ),
           SingleChildScrollView(
             padding: const EdgeInsets.all(16.0),

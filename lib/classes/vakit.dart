@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:xml/xml.dart' as xml;
 
 class PrayerTime {
